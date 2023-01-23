@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.25.0'
+}
+
+group 'com.nms'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainModule = 'com.nms.nmsbalance'
+    mainClass = 'com.nms.nmsbalance.Main'
+}
+
+javafx {
+    version = '19'
+    modules = ['javafx.controls', 'javafx.fxml']
+}

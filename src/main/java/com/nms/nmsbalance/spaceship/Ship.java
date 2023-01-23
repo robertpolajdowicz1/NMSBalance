@@ -1,7 +1,6 @@
 package com.nms.nmsbalance.spaceship;
 
 import java.util.HashMap;
-import java.util.Hashtable;
 
 public class Ship {
     private int damageCounter = 0;
@@ -46,9 +45,6 @@ public class Ship {
         board.get(19).addConnectedRooms(13,17);
         board.get(20).addConnectedRooms(17,18);
         board.get(21).addConnectedRooms(16,18);
-    }
-    public void TEST_consolePrinter(){
-
     }
     public void setDamageStatus(int id){
         board.get(id).setDamageStatus();

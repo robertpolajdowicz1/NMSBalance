@@ -1,11 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nms.nmsbalance.GameViewController">
+<AnchorPane fx:id="gameViewAnchor" prefHeight="630.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nms.nmsbalance.GameViewController">
    <children>
-      <ImageView fitHeight="99.0" fitWidth="1200.0" layoutY="601.0" pickOnBounds="true" preserveRatio="true" fx:id="torCzasu"/>
+      <ProgressBar fx:id="larvaBar" layoutY="597.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="creeperBar" layoutY="578.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="adultBar" layoutY="559.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="breederBar" layoutY="540.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="queenBar" layoutY="521.0" prefWidth="200.0" progress="0.0" />
+
+      <Button fx:id="playerPositionButton" layoutX="302.0" layoutY="50.0" mnemonicParsing="false" text="Zmień pozycje gracza" />
+      <Label layoutX="20.0" layoutY="14.0" prefHeight="18.0" prefWidth="944.0" text="Po zakończeniu fazy gracz usuń obcych którzy zginęli. Następnie zaktualizuj pozycje graczy. Kolejny krok to ruch potworów i karta wydarzenia. Na koniec wylosuj token z koloni." />
+      <ListView fx:id="listViewAliens" layoutX="17.0" layoutY="165.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="41.0" layoutY="49.0" mnemonicParsing="false" text="Usuń Obcego" />
+
+      <ChoiceBox fx:id="numberOfPlayers" layoutX="1014.0" layoutY="27.0" prefHeight="26.0" prefWidth="41.0" value="2">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="1" />
+            <String fx:value="2" />
+            <String fx:value="3" />
+            <String fx:value="4" />
+            <String fx:value="5" />
+         </FXCollections>
+      </items>
+
+
+      </ChoiceBox>
+      <Button fx:id="setGame" layoutX="1083.0" layoutY="27.0" mnemonicParsing="false" onAction="#onSetGameButtonsClick" text="Start" />
+      <Label fx:id="startHint" layoutX="972.0" layoutY="5.0" text="Wybierz liczbe graczy i kliknij start" />
+      <TextField layoutX="27.0" layoutY="48.0" prefHeight="26.0" prefWidth="14.0" />
+      <TextField layoutX="274.0" layoutY="49.0" prefHeight="26.0" prefWidth="14.0" />
+      <Label layoutX="13.0" layoutY="52.0" prefHeight="18.0" prefWidth="14.0" text="ID" />
+      <TextField layoutX="288.0" layoutY="49.0" prefHeight="26.0" prefWidth="14.0" />
+      <Label layoutX="17.0" layoutY="503.0" text="Prawdopodobieństwo tokenów" />
+      <Label layoutX="207.0" layoutY="522.0" text="Królowa" />
+      <Label layoutX="207.0" layoutY="597.0" text="Larwa" />
+      <Label layoutX="207.0" layoutY="559.0" text="Dorosły" />
+      <Label layoutX="208.0" layoutY="578.0" text="Pełzacz" />
+      <Label layoutX="207.0" layoutY="540.0" text="Reproduktor" />
+      <Label layoutX="13.0" layoutY="79.0" text="Ustaw status w pomieszczeniu" />
+      <TextField layoutX="29.0" layoutY="110.0" prefHeight="26.0" prefWidth="23.0" />
+      <Button layoutX="69.0" layoutY="111.0" mnemonicParsing="false" text="Ogień" />
+      <Button layoutX="130.0" layoutY="111.0" mnemonicParsing="false" text="Uszkodzenie" />
+      <Label layoutX="8.0" layoutY="115.0" text="ID" />
+      <Button layoutX="550.0" layoutY="50.0" mnemonicParsing="false" text="Dobierz kartę wydarzenia" />
+      <Button layoutX="708.0" layoutY="50.0" mnemonicParsing="false" text="Losowanie z koloni" />
+      <Button layoutX="442.0" layoutY="50.0" mnemonicParsing="false" text="Ruch potworów" />
+      <Label layoutX="136.0" layoutY="54.0" text="ID pomieszczenia i gracza" />
    </children>
 </AnchorPane>

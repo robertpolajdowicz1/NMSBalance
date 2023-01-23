@@ -60,6 +60,16 @@ public class Pool {
         addIdAliensCounter();
         addNumberOfTokens();
     }
+    public int countToken(int type){
+        int counter = 0;
+        for (Alien a : tokenPool.values())
+        {
+            if(a.getIntType() == type){
+                counter++;
+            }
+        }
+        return counter;
+    }
     private void addNumberOfTokens(){
         numberOfTokens++;
     }

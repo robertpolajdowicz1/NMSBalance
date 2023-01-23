@@ -15,10 +15,11 @@ public class StartController {
     private Button startButton ;
 
     @FXML
-    protected void onStartButtonsClick() throws IOException {
+    protected void onStartButtonClick() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("setup-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("game-view.fxml"));
         Stage stage = (Stage) startButton.getScene().getWindow();
         stage.setScene(new Scene(root,1200,700));
+        System.out.printf("klik");
     }
 }

@@ -17,6 +17,11 @@ public class Draw {
         List<Integer> drawList = pool.getTokenPool().keySet().stream().toList();
         int drawedTokenID = drawList.get(randomNumber);
         //pool.getTokenPool().get(drawedTokenID);
-        System.out.println(pool.getTokenPool().get(drawedTokenID).getType());
+    }
+
+    public double calculateBar(int type){
+        double alienCounter = pool.countToken(type);
+        System.out.println(alienCounter/ pool.getNumberOfTokens());
+        return alienCounter/ pool.getNumberOfTokens();
     }
 }

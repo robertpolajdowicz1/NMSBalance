@@ -1,5 +1,7 @@
 package com.nms.nmsbalance.spaceship;
 
+import com.nms.nmsbalance.alien.Alien;
+
 import java.util.ArrayList;
 
 public class Room implements IRoom {
@@ -12,6 +14,7 @@ public class Room implements IRoom {
     private int alienCounter;
     private int roomID;
     private ArrayList<Integer> connectedRoomsList = new ArrayList<>();
+    private ArrayList<Alien> aliensInRoom = new ArrayList<>();
     private String description = "Zwykłe pomieszczenie statku ";
 
     public Room(boolean damageStatus, boolean fireStatus, boolean nestStatus, boolean playersInside, boolean alienInside

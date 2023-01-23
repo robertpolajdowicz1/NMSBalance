@@ -21,11 +21,6 @@ public class Main extends Application {
 
     public static void main(String[] args) throws IOException {
 
-
-        Ship ship = new Ship();
-        ship.setRooms();
-        Draw draw = new Draw();
-
         launch();
     }
 }

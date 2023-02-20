@@ -7,50 +7,57 @@
 
 <AnchorPane fx:id="gameViewAnchor" prefHeight="630.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nms.nmsbalance.GameViewController">
    <children>
-      <ProgressBar fx:id="larvaBar" layoutY="597.0" prefWidth="200.0" progress="0.0" />
-      <ProgressBar fx:id="creeperBar" layoutY="578.0" prefWidth="200.0" progress="0.0" />
-      <ProgressBar fx:id="adultBar" layoutY="559.0" prefWidth="200.0" progress="0.0" />
-      <ProgressBar fx:id="breederBar" layoutY="540.0" prefWidth="200.0" progress="0.0" />
-      <ProgressBar fx:id="queenBar" layoutY="521.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="larvaBar" disable="true" layoutY="597.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="creeperBar" disable="true" layoutY="578.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="adultBar" disable="true" layoutY="559.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="breederBar" disable="true" layoutY="540.0" prefWidth="200.0" progress="0.0" />
+      <ProgressBar fx:id="queenBar" disable="true" layoutY="521.0" prefWidth="200.0" progress="0.0" />
 
-      <Button fx:id="playerPositionButton" layoutX="302.0" layoutY="50.0" mnemonicParsing="false" text="Zmień pozycje gracza" />
-      <Label layoutX="20.0" layoutY="14.0" prefHeight="18.0" prefWidth="944.0" text="Po zakończeniu fazy gracz usuń obcych którzy zginęli. Następnie zaktualizuj pozycje graczy. Kolejny krok to ruch potworów i karta wydarzenia. Na koniec wylosuj token z koloni." />
-      <ListView fx:id="listViewAliens" layoutX="17.0" layoutY="165.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="41.0" layoutY="49.0" mnemonicParsing="false" text="Usuń Obcego" />
+      <TextField fx:id="idRoomToSetFireOrDamage" disable="true" layoutX="29.0" layoutY="110.0" prefHeight="26.0" prefWidth="23.0" />
+      <TextField fx:id="idAlienToRemove" layoutX="27.0" layoutY="48.0" prefHeight="26.0" prefWidth="14.0" />
+      <TextField fx:id="idRoomPlayerPositionChange" layoutX="274.0" layoutY="49.0" prefHeight="26.0" prefWidth="14.0" />
+      <TextField fx:id="idPlayerPlayerPositionChange" layoutX="288.0" layoutY="49.0" prefHeight="26.0" prefWidth="14.0" />
+
+      <Label fx:id="tokensLabel" disable="true" layoutX="17.0" layoutY="503.0" text="Prawdopodobieństwo tokenów" />
+      <Label fx:id="queenL" disable="true" layoutX="207.0" layoutY="522.0" text="Królowa" />
+      <Label fx:id="larvaL" disable="true" layoutX="207.0" layoutY="597.0" text="Larwa" />
+      <Label fx:id="adultL" disable="true" layoutX="207.0" layoutY="559.0" text="Dorosły" />
+      <Label fx:id="creeperL" disable="true" layoutX="207.0" layoutY="578.0" text="Pełzacz" />
+      <Label fx:id="breederL" disable="true" layoutX="207.0" layoutY="540.0" text="Reproduktor" />
+      <Label fx:id="statusHint" disable="true" layoutX="21.0" layoutY="88.0" text="Ustaw status w pomieszczeniu" />
+      <Label fx:id="idL3" disable="true" layoutX="14.0" layoutY="115.0" text="ID" />
+      <Label fx:id="idL2" disable="true" layoutX="136.0" layoutY="54.0" text="ID pomieszczenia i gracza" />
+      <Label fx:id="startHint" layoutX="972.0" layoutY="5.0" text="Wybierz liczbe graczy i kliknij start" />
+      <Label fx:id="idL1" disable="true" layoutX="13.0" layoutY="52.0" prefHeight="18.0" prefWidth="14.0" text="ID" />
+      <Label fx:id="ruleHint" disable="true" layoutX="20.0" layoutY="14.0" prefHeight="18.0" prefWidth="944.0" text="Po zakończeniu fazy gracz usuń obcych którzy zginęli. Następnie zaktualizuj pozycje graczy. Kolejny krok to ruch potworów i karta wydarzenia. Na koniec wylosuj token z koloni." />
+
+      <Button fx:id="setGameButton" layoutX="1083.0" layoutY="27.0" mnemonicParsing="false" onAction="#onSetGameButtonsClick" text="Start" />
+      <Button fx:id="removeAlienButton" disable="true" layoutX="41.0" layoutY="49.0" mnemonicParsing="false" onAction="#onRemoveAlienButtonClick" text="Usuń Obcego" />
+      <Button fx:id="setFireButton" disable="true" layoutX="52.0" layoutY="111.0" mnemonicParsing="false" onAction="#onSetFireButtonClick" text="Ogień" />
+      <Button fx:id="setDamageButton" disable="true" layoutX="101.0" layoutY="111.0" mnemonicParsing="false" onAction="#onSetDamageButtonClick" text="Uszkodzenie" />
+      <Button fx:id="playerPositionButton" disable="true" layoutX="302.0" layoutY="50.0" mnemonicParsing="false" onAction="#onPlayerPositionButtonClick" text="Zmień pozycje gracza" />
+      <Button fx:id="alienMoveButton" disable="true" layoutX="442.0" layoutY="50.0" mnemonicParsing="false" onAction="#onAlienMoveButtonClick" text="Ruch potworów" />
+      <Button fx:id="pickCardButton" disable="true" layoutX="550.0" layoutY="50.0" mnemonicParsing="false" onAction="#onPickCardButtonClick" text="Dobierz kartę wydarzenia" />
+      <Button fx:id="pickTokenButton" disable="true" layoutX="708.0" layoutY="50.0" mnemonicParsing="false" onAction="#onPickTokenButtonClick" text="Losowanie z koloni" />
+
+      <ListView fx:id="listViewEvents" layoutX="17.0" layoutY="165.0" prefHeight="200.0" prefWidth="200.0" />
 
       <ChoiceBox fx:id="numberOfPlayers" layoutX="1014.0" layoutY="27.0" prefHeight="26.0" prefWidth="41.0" value="2">
-      <items>
-         <FXCollections fx:factory="observableArrayList">
-            <String fx:value="1" />
-            <String fx:value="2" />
-            <String fx:value="3" />
-            <String fx:value="4" />
-            <String fx:value="5" />
-         </FXCollections>
-      </items>
-
-
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="1" />
+               <String fx:value="2" />
+               <String fx:value="3" />
+               <String fx:value="4" />
+               <String fx:value="5" />
+            </FXCollections>
+         </items>
       </ChoiceBox>
-      <Button fx:id="setGame" layoutX="1083.0" layoutY="27.0" mnemonicParsing="false" onAction="#onSetGameButtonsClick" text="Start" />
-      <Label fx:id="startHint" layoutX="972.0" layoutY="5.0" text="Wybierz liczbe graczy i kliknij start" />
-      <TextField layoutX="27.0" layoutY="48.0" prefHeight="26.0" prefWidth="14.0" />
-      <TextField layoutX="274.0" layoutY="49.0" prefHeight="26.0" prefWidth="14.0" />
-      <Label layoutX="13.0" layoutY="52.0" prefHeight="18.0" prefWidth="14.0" text="ID" />
-      <TextField layoutX="288.0" layoutY="49.0" prefHeight="26.0" prefWidth="14.0" />
-      <Label layoutX="17.0" layoutY="503.0" text="Prawdopodobieństwo tokenów" />
-      <Label layoutX="207.0" layoutY="522.0" text="Królowa" />
-      <Label layoutX="207.0" layoutY="597.0" text="Larwa" />
-      <Label layoutX="207.0" layoutY="559.0" text="Dorosły" />
-      <Label layoutX="208.0" layoutY="578.0" text="Pełzacz" />
-      <Label layoutX="207.0" layoutY="540.0" text="Reproduktor" />
-      <Label layoutX="13.0" layoutY="79.0" text="Ustaw status w pomieszczeniu" />
-      <TextField layoutX="29.0" layoutY="110.0" prefHeight="26.0" prefWidth="23.0" />
-      <Button layoutX="69.0" layoutY="111.0" mnemonicParsing="false" text="Ogień" />
-      <Button layoutX="130.0" layoutY="111.0" mnemonicParsing="false" text="Uszkodzenie" />
-      <Label layoutX="8.0" layoutY="115.0" text="ID" />
-      <Button layoutX="550.0" layoutY="50.0" mnemonicParsing="false" text="Dobierz kartę wydarzenia" />
-      <Button layoutX="708.0" layoutY="50.0" mnemonicParsing="false" text="Losowanie z koloni" />
-      <Button layoutX="442.0" layoutY="50.0" mnemonicParsing="false" text="Ruch potworów" />
-      <Label layoutX="136.0" layoutY="54.0" text="ID pomieszczenia i gracza" />
+      <Button fx:id="removeFireButton"  disable="true" layoutX="239.0" layoutY="109.0" mnemonicParsing="false" onAction="#onRemoveFireButtonClick" text="Ogień" />
+      <Button fx:id="removeDamageButton" disable="true" layoutX="288.0" layoutY="109.0" mnemonicParsing="false" onAction="#onRemoveDamageButtonClick" text="Uszkodzenie" />
+      <Label fx:id="idL4" disable="true" layoutX="201.0" layoutY="114.0" text="ID" />
+      <Label fx:id="removeStatusHint" disable="true" layoutX="217.0" layoutY="88.0" text="Usuń status w pomieszczeniu" />
+      <TextField fx:id="idRoomToRemoveFireOrDamage" disable="true" layoutX="216.0" layoutY="109.0" prefHeight="26.0" prefWidth="23.0" />
+
    </children>
 </AnchorPane>

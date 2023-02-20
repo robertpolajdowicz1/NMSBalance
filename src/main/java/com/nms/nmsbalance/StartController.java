@@ -15,11 +15,16 @@ public class StartController {
     private Button startButton ;
 
     @FXML
+    private Button removeAlienButton,playerPositionButton,alienMoveButton,pickCardButton,pickTokenButton,setFireButton,setDamageButton;
+    @FXML
     protected void onStartButtonClick() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("game-view.fxml"));
         Stage stage = (Stage) startButton.getScene().getWindow();
         stage.setScene(new Scene(root,1200,700));
+
         System.out.printf("klik");
     }
+
+
 }

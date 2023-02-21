@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Draw {
-    private Pool pool = new Pool();
+    private final Pool pool = new Pool();
 
     public void setPool(int numberOfPlayers){
         pool.setTokenPool(numberOfPlayers);
@@ -16,7 +16,6 @@ public class Draw {
         int randomNumber = random.nextInt(size);
         List<Integer> drawList = pool.getTokenPool().keySet().stream().toList();
         int drawedTokenID = drawList.get(randomNumber);
-        //pool.getTokenPool().get(drawedTokenID);
     }
 
     public double calculateBar(int type){

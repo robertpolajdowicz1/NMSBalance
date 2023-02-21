@@ -1,11 +1,16 @@
 package com.nms.nmsbalance.spaceship;
 
+import com.nms.nmsbalance.alien.Alien;
+import com.nms.nmsbalance.player.Player;
+
 import java.util.HashMap;
 
 public class Ship {
     private int damageCounter = 0;
     private int fireCounter = 0;
-    private final HashMap<Integer,Room> board = new HashMap<>();
+    private HashMap<Integer,Room> board = new HashMap<>();
+    private HashMap<Integer, Player> players = new HashMap<>();
+    private HashMap<Integer, Alien> aliens = new HashMap<>();
     public void addRoom(int id,Room room){
         board.put(id,room);
     }
@@ -83,10 +88,11 @@ public class Ship {
     public void removeAlienInsideStatus(int id) {
         board.get(id).removeAlienInsideStatus();
     }
-    public void checkDamageStatus(int id){
-        board.get(id).checkDamageStatus();}
-    public void checkFireStatus(int id){
-        board.get(id).checkFireStatus();
+    public boolean checkDamageStatus(int id){
+        return board.get(id).checkDamageStatus();
+    }
+    public boolean checkFireStatus(int id){
+        return board.get(id).checkFireStatus();
     }
     public void checkNestStatus(int id){
         board.get(id).checkNestStatus();
@@ -96,5 +102,23 @@ public class Ship {
     }
     public void checkAlienInsideStatus(int id){
         board.get(id).checkAlienInsideStatus();
+    }
+
+    public void addPlayers(int numberOfPlayers){
+        for (int i = 1; i <= numberOfPlayers;i++) {
+            Player playerToAdd = new Player();
+            playerToAdd.changePosition(11);
+            playerToAdd.setPlayerID(i);
+            players.put(i, playerToAdd);
+            board.get(11).addPlayerCounter();
+            board.get(11).setPlayerInsideStatus();
+        }
+    }
+
+    public void changePlayerPosition(int idPlayer,int idRoom){
+        players.get(idPlayer).changePosition(idRoom);
+    }
+    public int numberOfPlayers(){
+        return players.size();
     }
 }

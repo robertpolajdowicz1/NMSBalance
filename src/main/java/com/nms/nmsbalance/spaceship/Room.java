@@ -10,12 +10,12 @@ public class Room implements IRoom {
     private boolean nestStatus;
     private boolean playersInside;
     private boolean alienInside;
-    private int playerCounter;
-    private int alienCounter;
+    private int playerCounter ;
+    private int alienCounter ;
     private int roomID;
     private ArrayList<Integer> connectedRoomsList = new ArrayList<>();
     private ArrayList<Alien> aliensInRoom = new ArrayList<>();
-    private String description = "Zwykłe pomieszczenie statku ";
+    private String description = "Pomieszczenie statku ";
 
     public Room(boolean damageStatus, boolean fireStatus, boolean nestStatus, boolean playersInside, boolean alienInside
             , int numberOfPlayers, int numberOfAliens, int roomID) {

@@ -86,7 +86,9 @@ public class Room implements IRoom {
 
     @Override
     public void setPlayerInsideStatus() {
-        this.playersInside=true;
+        if(playerCounter > 0) {
+            this.playersInside = true;
+        }
     }
 
     @Override
@@ -111,7 +113,7 @@ public class Room implements IRoom {
 
     @Override
     public void removePlayerInsideStatus() {
-        this.playersInside=false;
+        if(playerCounter == 0) this.playersInside=false;
     }
 
     @Override
@@ -121,7 +123,9 @@ public class Room implements IRoom {
 
     @Override
     public void addPlayerCounter() {
-        playerCounter++;
+        if (playerCounter < 5) {
+            playerCounter++;
+        }
     }
 
     @Override
@@ -131,7 +135,9 @@ public class Room implements IRoom {
 
     @Override
     public void subPlayerCounter() {
-        playerCounter--;
+        if (playerCounter > 1) {
+            playerCounter--;
+        }
     }
 
     @Override
@@ -141,4 +147,6 @@ public class Room implements IRoom {
     public int getRoomID() {
         return roomID;
     }
+
+
 }

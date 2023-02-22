@@ -107,7 +107,7 @@ public class Ship {
     public void addPlayers(int numberOfPlayers){
         for (int i = 1; i <= numberOfPlayers;i++) {
             Player playerToAdd = new Player();
-            playerToAdd.changePosition(11);
+            playerToAdd.setPosition(11);
             playerToAdd.setPlayerID(i);
             players.put(i, playerToAdd);
             board.get(11).addPlayerCounter();
@@ -115,9 +115,18 @@ public class Ship {
         }
     }
 
-    public void changePlayerPosition(int idPlayer,int idRoom){
-        players.get(idPlayer).changePosition(idRoom);
+    public void changePlayerPosition(int idPlayer,int newIDRoom){
+        int oldIDRoom = players.get(idPlayer).getPositionRoomID();
+        board.get(oldIDRoom).subPlayerCounter();
+        board.get(oldIDRoom).removePlayerInsideStatus();
+        players.get(idPlayer).setPosition(newIDRoom);
+        board.get(newIDRoom).addPlayerCounter();
+        board.get(newIDRoom).setPlayerInsideStatus();
     }
+    public int getPlayerPositionID(int id){
+        return players.get(id).getPositionRoomID();
+    }
+
     public int numberOfPlayers(){
         return players.size();
     }

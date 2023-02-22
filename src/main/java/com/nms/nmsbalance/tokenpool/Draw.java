@@ -10,12 +10,12 @@ public class Draw {
         pool.setTokenPool(numberOfPlayers);
     }
 
-    public void drawToken(){
+    public int drawToken(){
         int size = pool.getNumberOfTokens();
         Random random = new Random();
         int randomNumber = random.nextInt(size);
         List<Integer> drawList = pool.getTokenPool().keySet().stream().toList();
-        int drawedTokenID = drawList.get(randomNumber);
+        return drawList.get(randomNumber);
     }
 
     public double calculateBar(int type){

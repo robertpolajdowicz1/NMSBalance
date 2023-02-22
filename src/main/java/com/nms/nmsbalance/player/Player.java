@@ -4,7 +4,12 @@ public class Player {
     private int playerID;
     private int positionRoomID = 11;
     private int seriousWoundCounter;
-    public void changePosition(int roomID){
+
+    public int getPositionRoomID() {
+        return positionRoomID;
+    }
+
+    public void setPosition(int roomID){
         this.positionRoomID = roomID;
     }
     public void setPlayerID(int playerID) {

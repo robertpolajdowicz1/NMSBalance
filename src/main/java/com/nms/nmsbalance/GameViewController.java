@@ -68,7 +68,7 @@ public class GameViewController {
 
     @FXML
     private void onSetFireButtonClick() {
-        if (!idRoomToSetFireOrDamage.getText().isEmpty()) {
+        if (!idRoomToSetFireOrDamage.getText().isEmpty() && checkRoomID(idRoomToSetFireOrDamage.getText())) {
             if (!ship.checkFireStatus(Integer.parseInt(idRoomToSetFireOrDamage.getText()))) {
                 ship.setFireStatus(Integer.parseInt(idRoomToSetFireOrDamage.getText()));
                 addEventLog("Pozar w pomieszczeniu " + idRoomToSetFireOrDamage.getText());
@@ -80,7 +80,7 @@ public class GameViewController {
 
     @FXML
     private void onSetDamageButtonClick() {
-        if (!idRoomToSetFireOrDamage.getText().isEmpty()) {
+        if (!idRoomToSetFireOrDamage.getText().isEmpty() && checkRoomID(idRoomToSetFireOrDamage.getText())) {
             if (!ship.checkDamageStatus(Integer.parseInt(idRoomToSetFireOrDamage.getText()))) {
                 ship.setDamageStatus(Integer.parseInt(idRoomToSetFireOrDamage.getText()));
                 addEventLog("Uszkodzone pomieszczenie " + idRoomToSetFireOrDamage.getText());
@@ -91,7 +91,7 @@ public class GameViewController {
 
     @FXML
     private void onRemoveFireButtonClick() {
-        if (!idRoomToRemoveFireOrDamage.getText().isEmpty()) {
+        if (!idRoomToRemoveFireOrDamage.getText().isEmpty() && checkRoomID(idRoomToRemoveFireOrDamage.getText())){
             if (ship.checkFireStatus(Integer.parseInt(idRoomToRemoveFireOrDamage.getText()))) {
                 ship.removeFireStatus(Integer.parseInt(idRoomToRemoveFireOrDamage.getText()));
                 addEventLog("Ugaszono pozar w pomieszczeniu " + idRoomToRemoveFireOrDamage.getText());
@@ -102,8 +102,8 @@ public class GameViewController {
 
     @FXML
     private void onRemoveDamageButtonClick() {
-        if (!idRoomToRemoveFireOrDamage.getText().isEmpty()) {
-            if (ship.checkDamageStatus(Integer.parseInt(idRoomToSetFireOrDamage.getText()))) {
+        if (!idRoomToRemoveFireOrDamage.getText().isEmpty() && checkRoomID(idRoomToRemoveFireOrDamage.getText())) {
+            if (ship.checkDamageStatus(Integer.parseInt(idRoomToRemoveFireOrDamage.getText()))) {
                 ship.removeDamageStatus(Integer.parseInt(idRoomToRemoveFireOrDamage.getText()));
                 addEventLog("Naprawiono pomieszczenie " + idRoomToRemoveFireOrDamage.getText());
                 idRoomToRemoveFireOrDamage.clear();
@@ -129,8 +129,10 @@ public class GameViewController {
     @FXML
     private void onPlayerPositionButtonClick() {
         if(checkPlayerAndRoomID()){
-            ship.changePlayerPosition(Integer.parseInt(idPlayerPlayerPositionChange.getText()),Integer.parseInt(idRoomPlayerPositionChange.getText()));
-            addEventLog("Gracz " + idPlayerPlayerPositionChange.getText()+" wszedl do pomieszczenia "+ idRoomPlayerPositionChange.getText());
+            int playerID = Integer.parseInt(idPlayerPlayerPositionChange.getText());
+            int roomID = Integer.parseInt(idRoomPlayerPositionChange.getText());
+            ship.changePlayerPosition(playerID,roomID);
+            addEventLog("Gracz " + playerID+" wszedl do pomieszczenia "+ roomID);
             idRoomPlayerPositionChange.clear();
             idPlayerPlayerPositionChange.clear();
         }
@@ -188,6 +190,14 @@ public class GameViewController {
 
 
     public void onAlienEncounterButtonClick() {
+        if(checkPlayerID())
+        {
+            int playerID = Integer.parseInt(idPlayerAlienEncounter.getText());
+            int roomID = ship.getPlayerPositionID(playerID);
+
+            draw.drawToken();
+
+        }
     }
 
     private boolean checkPlayerAndRoomID(){
@@ -197,6 +207,22 @@ public class GameViewController {
                 Integer.parseInt(idPlayerPlayerPositionChange.getText()) > 0 &&
                 Integer.parseInt(idRoomPlayerPositionChange.getText()) > 0 &&
                 Integer.parseInt(idRoomPlayerPositionChange.getText()) < 22)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkPlayerID(){
+        if(!idPlayerAlienEncounter.getText().isEmpty() && Integer.parseInt(idPlayerAlienEncounter.getText()) < ship.numberOfPlayers()+1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkRoomID(String id){
+        if(Integer.parseInt(id) < 21 && Integer.parseInt(id) > 0)
         {
             return true;
         }

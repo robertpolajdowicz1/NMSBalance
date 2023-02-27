@@ -40,6 +40,9 @@ public class GameViewController {
         numberOfPlayers.setDisable(true);
         setGameButton.setDisable(true);
         allButtonsAndHintsDisabled();
+        startHint.setVisible(false);
+        numberOfPlayers.setVisible(false);
+        setGameButton.setVisible(false);
 
     }
 

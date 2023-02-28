@@ -21,14 +21,14 @@ public class GameViewController {
 
     @FXML
     private Label startHint, setStatusHint, removeStatusHint, alienEncounterHint, idL1, idL2, idL3, idL4,idL5, ruleHint, eventLabel,
-            tokensLabel, larvaL, creeperL, adultL, breederL, queenL;
+            tokensLabel, larvaL, creeperL, adultL, breederL, queenL,historyL,aliensL,playersL,roomsL;
     @FXML
     private ProgressBar larvaBar, creeperBar, adultBar, breederBar, queenBar;
     @FXML
     private TextField idRoomToRemoveFireOrDamage, idRoomToSetFireOrDamage, idAlienToRemove, idRoomPlayerPositionChange,
             idPlayerPlayerPositionChange, idPlayerAlienEncounter;
     @FXML
-    private ListView<String> listViewEvents;
+    private ListView<String> eventListView,aliensListView,playersListView,roomsListView;
 
     @FXML
     private void onSetGameButtonClick() {
@@ -39,10 +39,12 @@ public class GameViewController {
         setBars();
         numberOfPlayers.setDisable(true);
         setGameButton.setDisable(true);
-        allButtonsAndHintsDisabled();
+        setEnableAll();
         startHint.setVisible(false);
         numberOfPlayers.setVisible(false);
         setGameButton.setVisible(false);
+        playerToListView();
+        roomsToListView();
 
     }
 
@@ -76,7 +78,7 @@ public class GameViewController {
                 ship.setFireStatus(Integer.parseInt(idRoomToSetFireOrDamage.getText()));
                 addEventLog("Pozar w pomieszczeniu " + idRoomToSetFireOrDamage.getText());
                 idRoomToSetFireOrDamage.clear();
-
+                roomsToListView();
             }
         }
     }
@@ -88,6 +90,7 @@ public class GameViewController {
                 ship.setDamageStatus(Integer.parseInt(idRoomToSetFireOrDamage.getText()));
                 addEventLog("Uszkodzone pomieszczenie " + idRoomToSetFireOrDamage.getText());
                 idRoomToSetFireOrDamage.clear();
+                roomsToListView();
             }
         }
     }
@@ -99,6 +102,7 @@ public class GameViewController {
                 ship.removeFireStatus(Integer.parseInt(idRoomToRemoveFireOrDamage.getText()));
                 addEventLog("Ugaszono pozar w pomieszczeniu " + idRoomToRemoveFireOrDamage.getText());
                 idRoomToRemoveFireOrDamage.clear();
+                roomsToListView();
             }
         }
     }
@@ -110,6 +114,7 @@ public class GameViewController {
                 ship.removeDamageStatus(Integer.parseInt(idRoomToRemoveFireOrDamage.getText()));
                 addEventLog("Naprawiono pomieszczenie " + idRoomToRemoveFireOrDamage.getText());
                 idRoomToRemoveFireOrDamage.clear();
+                roomsToListView();
             }
         }
     }
@@ -138,6 +143,7 @@ public class GameViewController {
             addEventLog("Gracz " + playerID+" wszedl do pomieszczenia "+ roomID);
             idRoomPlayerPositionChange.clear();
             idPlayerPlayerPositionChange.clear();
+            playerToListView();
         }
     }
 
@@ -147,11 +153,11 @@ public class GameViewController {
     }
 
     private void addEventLog(String log) {
-        listViewEvents.getItems().add(0, log);
-        listViewEvents.refresh();
+        eventListView.getItems().add(0, log);
+        eventListView.refresh();
     }
 
-    private void allButtonsAndHintsDisabled() {
+    private void setEnableAll() {
         removeAlienButton.setDisable(false);
         playerPositionButton.setDisable(false);
         alienMoveButton.setDisable(false);
@@ -173,6 +179,10 @@ public class GameViewController {
         idL3.setDisable(false);
         idL4.setDisable(false);
         idL5.setDisable(false);
+        eventListView.setDisable(false);
+        playersListView.setDisable(false);
+        aliensListView.setDisable(false);
+        roomsListView.setDisable(false);
         alienEncounterHint.setDisable(false);
         removeStatusHint.setDisable(false);
         setStatusHint.setDisable(false);
@@ -189,6 +199,10 @@ public class GameViewController {
         adultL.setDisable(false);
         breederL.setDisable(false);
         queenL.setDisable(false);
+        roomsL.setDisable(false);
+        aliensL.setDisable(false);
+        historyL.setDisable(false);
+        playersL.setDisable(false);
     }
 
 
@@ -225,10 +239,36 @@ public class GameViewController {
     }
 
     private boolean checkRoomID(String id){
-        if(Integer.parseInt(id) < 21 && Integer.parseInt(id) > 0)
+        if(Integer.parseInt(id) < 22 && Integer.parseInt(id) > 0)
         {
             return true;
         }
         return false;
+    }
+
+    private void playerToListView(){
+        playersListView.getItems().clear();
+        for (int i = 1; i < ship.numberOfPlayers()+1;i++)
+        {
+            playersListView.getItems().add("Gracz " + i + " pomieszczenie nr " + ship.getPlayerPositionID(i));
+            playersListView.refresh();
+        }
+    }
+
+    private void roomsToListView(){
+        roomsListView.getItems().clear();
+        StringBuilder info = new StringBuilder("Pomieszczenie ");
+        for (int i=1;i<22;i++){
+            info.append(i);
+            if(ship.checkFireStatus(i)){
+                info.append(" podpalone");
+            }
+            if(ship.checkDamageStatus(i)){
+                info.append(" uszkodzone ");
+            }
+            roomsListView.getItems().add(info.toString());
+            info = new StringBuilder("Pomieszczenie ");
+        }
+        roomsListView.refresh();
     }
 }

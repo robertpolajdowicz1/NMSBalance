@@ -20,7 +20,6 @@ public class Draw {
 
     public double calculateBar(int type){
         double alienCounter = pool.countToken(type);
-        System.out.println(alienCounter/ pool.getNumberOfTokens());
         return alienCounter/ pool.getNumberOfTokens();
     }
 }

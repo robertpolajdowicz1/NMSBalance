@@ -15,7 +15,7 @@ public class Room implements IRoom {
     private int roomID;
     private ArrayList<Integer> connectedRoomsList = new ArrayList<>();
     private ArrayList<Alien> aliensInRoom = new ArrayList<>();
-    private String description = "Pomieszczenie statku ";
+    private String description = "Pomieszczenie";
 
     public Room(boolean damageStatus, boolean fireStatus, boolean nestStatus, boolean playersInside, boolean alienInside
             , int numberOfPlayers, int numberOfAliens, int roomID) {
@@ -135,7 +135,7 @@ public class Room implements IRoom {
 
     @Override
     public void subPlayerCounter() {
-        if (playerCounter > 1) {
+        if (playerCounter >= 1) {
             playerCounter--;
         }
     }
@@ -148,5 +148,8 @@ public class Room implements IRoom {
         return roomID;
     }
 
+    public String getDescription(){
+        return this.description;
+    }
 
 }

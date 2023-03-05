@@ -1,7 +1,4 @@
 package com.nms.nmsbalance;
-
-import com.nms.nmsbalance.spaceship.Ship;
-import com.nms.nmsbalance.tokenpool.Draw;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

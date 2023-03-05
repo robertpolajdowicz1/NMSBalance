@@ -63,7 +63,7 @@
          </font></Label>
       <Label fx:id="idL4" disable="true" layoutX="217.0" layoutY="146.0" text="ID" textFill="WHITE" />
       <Label fx:id="removeStatusHint" disable="true" layoutX="241.0" layoutY="122.0" text="Usuń status w pomieszczeniu" textFill="WHITE" />
-      <Label fx:id="historyL" disable="true" layoutX="559.0" layoutY="386.0" text="HISTORIA" textFill="WHITE">
+      <Label fx:id="historyL" disable="true" layoutX="656.0" layoutY="386.0" text="HISTORIA" textFill="WHITE">
          <effect>
             <Glow />
          </effect></Label>
@@ -71,7 +71,7 @@
          <effect>
             <Glow />
          </effect></Label>
-      <Label fx:id="aliensL" disable="true" layoutX="302.0" layoutY="386.0" text="POZYCJA OBCYCH" textFill="WHITE">
+      <Label fx:id="aliensL" disable="true" layoutX="330.0" layoutY="386.0" text="POZYCJA OBCYCH" textFill="WHITE">
          <effect>
             <Glow />
          </effect></Label>
@@ -92,10 +92,10 @@
       <Button fx:id="removeDamageButton" disable="true" layoutX="312.0" layoutY="142.0" mnemonicParsing="false" onAction="#onRemoveDamageButtonClick" text="Uszkodzenie" />
       <Button fx:id="removeFireButton" disable="true" layoutX="263.0" layoutY="142.0" mnemonicParsing="false" onAction="#onRemoveFireButtonClick" text="Ogień" />
 
-      <ListView fx:id="eventListView" disable="true" layoutX="469.0" layoutY="412.0" prefHeight="200.0" prefWidth="231.0" />
+      <ListView fx:id="eventListView" disable="true" layoutX="566.0" layoutY="412.0" prefHeight="200.0" prefWidth="231.0" />
       <ListView fx:id="playersListView" disable="true" layoutX="26.0" layoutY="412.0" prefHeight="124.0" prefWidth="179.0" />
-      <ListView fx:id="roomsListView" disable="true" layoutX="898.0" layoutY="137.0" prefHeight="494.0" prefWidth="293.0" />
-      <ListView fx:id="aliensListView" disable="true" layoutX="252.0" layoutY="412.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="roomsListView" disable="true" layoutX="850.0" layoutY="137.0" prefHeight="494.0" prefWidth="343.0" />
+      <ListView fx:id="aliensListView" disable="true" layoutX="252.0" layoutY="412.0" prefHeight="200.0" prefWidth="254.0" />
 
       <ChoiceBox fx:id="numberOfPlayers" layoutX="1047.0" layoutY="61.0" prefHeight="26.0" prefWidth="49.0" value="2">
          <items>

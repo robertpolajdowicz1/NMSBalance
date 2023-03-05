@@ -2,12 +2,15 @@ package com.nms.nmsbalance.spaceship;
 
 import com.nms.nmsbalance.alien.Alien;
 import com.nms.nmsbalance.player.Player;
+import com.nms.nmsbalance.tokenpool.Token;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Ship {
     private int damageCounter = 0;
     private int fireCounter = 0;
+    private int alienIDCounter = 1;
     private HashMap<Integer,Room> board = new HashMap<>();
     private HashMap<Integer, Player> players = new HashMap<>();
     private HashMap<Integer, Alien> aliens = new HashMap<>();
@@ -97,11 +100,12 @@ public class Ship {
     public void checkNestStatus(int id){
         board.get(id).checkNestStatus();
     }
-    public void checkPlayerInsideStatus(int id){
-        board.get(id).checkPlayerInsideStatus();
+    public boolean checkPlayerInsideStatus(int id){
+        return board.get(id).checkPlayerInsideStatus();
     }
-    public void checkAlienInsideStatus(int id){
-        board.get(id).checkAlienInsideStatus();
+    public boolean checkAlienInsideStatus(int id){
+        return board.get(id).checkAlienInsideStatus();
+
     }
 
     public void addPlayers(int numberOfPlayers){
@@ -130,4 +134,33 @@ public class Ship {
     public int numberOfPlayers(){
         return players.size();
     }
+    public int numberOfAliensOnBoard(){
+        return aliens.size();
+    }
+    public void addAlienToBoard(Token token,int roomID) {
+        if (token.getIntType() > 0) {
+            aliens.put(alienIDCounter, new Alien(token.getType(), token.getIntType(), roomID));
+            alienIDCounter++;
+        }
+    }
+    public  HashMap<Integer,Alien> getAliens()
+    {
+        return aliens;
+    }
+    public List<Integer> getAliensID(){
+        return aliens.keySet().stream().toList();
+    }
+
+    public String getAlienStringType (int id){
+        return aliens.get(id).getType();
+    }
+
+    public int getAlienPositionID (int id){
+        return aliens.get(id).getPositionRoomID();
+    }
+
+    public String getDescription(int id){
+       return board.get(id).getDescription();
+    }
+
 }

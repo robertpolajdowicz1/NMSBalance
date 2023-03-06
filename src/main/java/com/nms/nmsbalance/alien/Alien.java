@@ -1,8 +1,8 @@
 package com.nms.nmsbalance.alien;
 
 public class Alien {
-    private String alienType;
-    private int alienIntType;
+    private final String alienType;
+    private final int alienIntType;
     private int positionRoomID;
     public Alien(String alienType, int alienIntType,int positionRoomID ) {
         this.alienType = alienType;

@@ -16,7 +16,13 @@ application {
     mainModule = 'com.nms.nmsbalance'
     mainClass = 'com.nms.nmsbalance.Main'
 }
-
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/resources", "src/main/java"]
+        }
+    }
+}
 javafx {
     version = '19'
     modules = ['javafx.controls', 'javafx.fxml']

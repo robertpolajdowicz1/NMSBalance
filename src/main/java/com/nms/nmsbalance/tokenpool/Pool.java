@@ -5,31 +5,32 @@ import java.util.List;
 import java.util.Random;
 
 public class Pool {
-    private int idAliensCounter = 0;
+    private int idTokenCounter = 0;
     private HashMap<Integer,Token> tokenPool = new HashMap<>();
     public int getNumberOfTokens() {
         return tokenPool.size();
     }
 
     public void setTokenPool(int numberOfPlayers){
-        //tokenPool.put(idAliensCounter,new Token("pusty",0));
-       // addIdAliensCounter();
+
 
         for (int i = 0; i < 4; i++){
-            tokenPool.put(idAliensCounter, new Token("Larwa",1));
-            addIdAliensCounter();
+            tokenPool.put(idTokenCounter, new Token("Larwa",1));
+            addTokenIDCounter();
 
         }
-        tokenPool.put(idAliensCounter, new Token("Pelzacz",2));
-        addIdAliensCounter();
+        tokenPool.put(idTokenCounter, new Token("Pelzacz",2));
+        addTokenIDCounter();
 
+        tokenPool.put(idTokenCounter,new Token("Pusty",0));
+        addTokenIDCounter();
         for (int i = 0; i < 3 + numberOfPlayers; i++){
-            tokenPool.put(idAliensCounter, new Token("Dorosly",3));
-            addIdAliensCounter();
+            tokenPool.put(idTokenCounter, new Token("Dorosly",3));
+            addTokenIDCounter();
 
         }
-       tokenPool.put(idAliensCounter, new Token("Krolowa",5));
-        addIdAliensCounter();
+       tokenPool.put(idTokenCounter, new Token("Krolowa",5));
+        addTokenIDCounter();
 
     }
     public int countToken(int type){
@@ -42,11 +43,12 @@ public class Pool {
         }
         return counter;
     }
-    private void addIdAliensCounter(){
-        idAliensCounter++;
+    private void addTokenIDCounter(){
+        idTokenCounter++;
     }
     public double calculateBar(int type){
         double alienCounter = countToken(type);
+        System.out.println(alienCounter/ getNumberOfTokens());
         return alienCounter/ getNumberOfTokens();
     }
 
@@ -55,9 +57,23 @@ public class Pool {
         Random random = new Random();
         int choosenTokenID = random.nextInt(tokenKeys.size());
         Token alienToken = tokenPool.get(tokenKeys.get(choosenTokenID));
-        tokenPool.remove(tokenKeys.get(choosenTokenID));
+
+        if (alienToken.getIntType() != 0)
+        {
+            tokenPool.remove(tokenKeys.get(choosenTokenID));
+        }
+
         return alienToken;
     }
 
-
+    public void addToken(int tierID) {
+        String stringType="";
+        if(tierID == 1){ stringType = "Larwa";}
+        if(tierID == 2){ stringType = "Pelzacz";}
+        if(tierID == 3){ stringType = "Dorosly";}
+        if(tierID == 4){ stringType = "Reproduktor";}
+        if(tierID == 5){ stringType = "Krolowa";}
+        tokenPool.put(idTokenCounter, new Token(stringType,tierID));
+        addTokenIDCounter();
+    }
 }

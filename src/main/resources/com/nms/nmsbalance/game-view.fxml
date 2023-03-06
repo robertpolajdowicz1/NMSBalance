@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="gameViewAnchor" maxHeight="636.0" maxWidth="1200" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nms.nmsbalance.GameViewController">
+<AnchorPane fx:id="MainView" maxHeight="636.0" maxWidth="1200" minHeight="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nms.nmsbalance.GameViewController">
    <background>
       <Background>
          <images>
@@ -33,7 +33,7 @@
       <TextField fx:id="idPlayerPlayerPositionChange" disable="true" layoutX="213.0" layoutY="53.0" prefHeight="26.0" prefWidth="23.0" />
       <TextField fx:id="idPlayerAlienEncounter" disable="true" layoutX="428.0" layoutY="142.0" prefHeight="26.0" prefWidth="23.0" />
       <TextField fx:id="idRoomToRemoveFireOrDamage" disable="true" layoutX="232.0" layoutY="142.0" prefHeight="26.0" prefWidth="31.0" />
-
+      <TextField fx:id="tierID" disable="true" layoutX="879.0" layoutY="52.0" prefHeight="26.0" prefWidth="23.0" />
       <Label fx:id="tokensLabel" disable="true" layoutX="44.0" layoutY="234.0" text="Prawdopodobieństwo tokenów" textFill="WHITE">
          <font>
             <Font size="13.0" />
@@ -61,6 +61,10 @@
          <font>
             <Font size="13.0" />
          </font></Label>
+      <Label fx:id="addTokenHint" disable="true" layoutX="840.0" layoutY="57.0" text="Tier" textFill="WHITE">
+         <effect>
+            <Glow />
+         </effect></Label>
       <Label fx:id="idL4" disable="true" layoutX="217.0" layoutY="146.0" text="ID" textFill="WHITE" />
       <Label fx:id="removeStatusHint" disable="true" layoutX="241.0" layoutY="122.0" text="Usuń status w pomieszczeniu" textFill="WHITE" />
       <Label fx:id="historyL" disable="true" layoutX="656.0" layoutY="386.0" text="HISTORIA" textFill="WHITE">
@@ -91,7 +95,7 @@
       <Button fx:id="alienEncounterButton" disable="true" layoutX="452.0" layoutY="142.0" mnemonicParsing="false" onAction="#onAlienEncounterButtonClick" text="Spotkanie z obcym" />
       <Button fx:id="removeDamageButton" disable="true" layoutX="312.0" layoutY="142.0" mnemonicParsing="false" onAction="#onRemoveDamageButtonClick" text="Uszkodzenie" />
       <Button fx:id="removeFireButton" disable="true" layoutX="263.0" layoutY="142.0" mnemonicParsing="false" onAction="#onRemoveFireButtonClick" text="Ogień" />
-
+      <Button fx:id="addTokenButton" disable="true" layoutX="831.0" layoutY="91.0" mnemonicParsing="false" onAction="#onAddTokenButtonClick" text="Dodaj token" />
       <ListView fx:id="eventListView" disable="true" layoutX="566.0" layoutY="412.0" prefHeight="200.0" prefWidth="231.0" />
       <ListView fx:id="playersListView" disable="true" layoutX="26.0" layoutY="412.0" prefHeight="124.0" prefWidth="179.0" />
       <ListView fx:id="roomsListView" disable="true" layoutX="850.0" layoutY="137.0" prefHeight="494.0" prefWidth="343.0" />

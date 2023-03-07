@@ -48,7 +48,6 @@ public class Pool {
     }
     public double calculateBar(int type){
         double alienCounter = countToken(type);
-        System.out.println(alienCounter/ getNumberOfTokens());
         return alienCounter/ getNumberOfTokens();
     }
 

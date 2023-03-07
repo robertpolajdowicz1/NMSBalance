@@ -3,7 +3,6 @@ package com.nms.nmsbalance.spaceship;
 import com.nms.nmsbalance.alien.Alien;
 import com.nms.nmsbalance.player.Player;
 import com.nms.nmsbalance.tokenpool.Token;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -146,6 +145,15 @@ public class Ship {
     public  HashMap<Integer,Alien> getAliens()
     {
         return aliens;
+    }
+
+    public boolean removeAlien(int alienID)
+    {
+        if(aliens.containsKey(alienID)){
+            aliens.remove(alienID);
+            return true;
+        }
+        return false;
     }
     public List<Integer> getAliensID(){
         return aliens.keySet().stream().toList();

@@ -13,7 +13,6 @@ public interface IRoom {
     void setAlienInsideStatus();
     void removeDamageStatus();
     void removeFireStatus();
-    void removeNestStatus();
     void removePlayerInsideStatus();
     void removeAlienInsideStatus();
     void addPlayerCounter();

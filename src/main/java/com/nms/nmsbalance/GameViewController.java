@@ -16,16 +16,16 @@ public class GameViewController {
     private final Pool pool = new Pool();
 
     @FXML
-    private Button setGameButton, removeAlienButton, playerPositionButton, addTokenButton, alienMoveButton, pickCardButton, pickTokenButton, setFireButton, setDamageButton, removeFireButton, removeDamageButton, alienEncounterButton;
+    private Button setGameButton, removeAlienButton, playerPositionButton, addTokenButton, alienMoveButton, pickCardButton, pickTokenButton, setFireButton, setDamageButton, removeFireButton, removeDamageButton, alienEncounterButton, setNestButton;
     @FXML
     private ChoiceBox<String> numberOfPlayers;
 
     @FXML
-    private Label startHint, setStatusHint, removeStatusHint, alienEncounterHint, removeAlienHint, idL1, idL2, idL3, idL4, idL5, ruleHint, eventLabel, tokensLabel, larvaL, creeperL, adultL, breederL, queenL, historyL, aliensL, playersL, addTokenHint, roomsL;
+    private Label startHint, setStatusHint, removeStatusHint, alienEncounterHint, removeAlienHint, IDL1, IDL2, IDL3, ruleHint, eventLabel, tokensLabel, larvaL, creeperL, adultL, breederL, queenL, historyL, aliensL, playersL, addTokenHint, roomsL, nestHint;
     @FXML
     private ProgressBar larvaBar, creeperBar, adultBar, breederBar, queenBar;
     @FXML
-    private TextField IDRoomToRemoveFireOrDamage, IDRoomToSetFireOrDamage, IDAlienToRemove, IDRoomPlayerPositionChange, IDPlayerPlayerPositionChange, IDPlayerAlienEncounter, IDTokenTier;
+    private TextField IDRoomToRemoveFireOrDamage, IDRoomToSetFireOrDamage, IDAlienToRemove, IDRoomPlayerPositionChange, IDPlayerPlayerPositionChange, IDPlayerAlienEncounter, IDTokenTier, idNest;
     @FXML
     private ListView<String> eventListView, aliensListView, playersListView, roomsListView;
 
@@ -41,6 +41,8 @@ public class GameViewController {
             IDPlayerPlayerPositionChange.clear();
             addPlayerLog();
             addRoomLog();
+        } else {
+            addEventLog("Bledne ID lub puste pole");
         }
     }
 
@@ -57,16 +59,49 @@ public class GameViewController {
     @FXML
     private void onPickTokenButtonClick() {
 
+        int tokenTierID = pool.pickToken(ship.checkIfNestFounded(), ship.checkAlienInsideStatus(ship.getNestRoomID()),ship.checkPlayerInsideStatus(ship.getNestRoomID()));
+        if (tokenTierID == 0){
+            addEventLog("Wylosowano pusty, do puli dodano Dorosly");
+            setBars();
+        }
+        if (tokenTierID == 1){
+            addEventLog("Wylosowano larwe, do puli dodano Dorolosly");
+            setBars();
+        }
+        if (tokenTierID == 2){
+            addEventLog("Wylosowano pelzacza, do puli dodano Reproduktora");
+            setBars();
+        }
+        if (tokenTierID == 3){
+            addEventLog("Wylosowano dorosly, rzucacie na szmery");
+        }
+        if (tokenTierID == 4){
+            addEventLog("Wylosowano reproduktor, rzucacie na szmery");
+        }
+        if (tokenTierID == 5){
+            addEventLog("Krolowa pojawia sie w gniezdzie");
+            Token queen = new Token("Krolowa",5);
+            ship.addAlienToBoard(queen,ship.getNestRoomID());
+            addAlienLog();
+            addRoomLog();
+            setBars();
+        }
+        if (tokenTierID == 6){
+            addEventLog("Wylosowano Krolowa ale nikogo nie ma w gniezdzie");
+        }
+
     }
 
     @FXML
     private void onAddTokenButtonClick() {
-        if (!IDTokenTier.getText().isEmpty()) {
-            if (validationTokenTierID(Integer.parseInt(IDTokenTier.getText()))) {
+        if (!IDTokenTier.getText().isEmpty() && isNumeric(IDTokenTier.getText())) {
+            if (validationTokenTierID(IDTokenTier.getText())) {
                 pool.addToken(Integer.parseInt(IDTokenTier.getText()));
                 addEventLog("Dodano token " + tokenToString(Integer.parseInt(IDTokenTier.getText())));
                 IDTokenTier.clear();
                 setBars();
+            } else {
+                addEventLog("Grr! Pomieszczenia maja ID 1-21");
             }
         }
     }
@@ -79,7 +114,11 @@ public class GameViewController {
                 addEventLog("Pozar w pomieszczeniu " + IDRoomToSetFireOrDamage.getText());
                 IDRoomToSetFireOrDamage.clear();
                 addRoomLog();
+            } else {
+                addEventLog("Ten pokoj jest juz podpalony");
             }
+        } else {
+            addEventLog("Grr! Pomieszczenia maja ID 1-21");
         }
     }
 
@@ -91,7 +130,11 @@ public class GameViewController {
                 addEventLog("Uszkodzone pomieszczenie " + IDRoomToSetFireOrDamage.getText());
                 IDRoomToSetFireOrDamage.clear();
                 addRoomLog();
+            } else {
+                addEventLog("Ten pokoj jest juz uszkodzony");
             }
+        } else {
+            addEventLog("Grr! Pomieszczenia maja ID 1-21");
         }
     }
 
@@ -103,7 +146,11 @@ public class GameViewController {
                 addEventLog("Ugaszono pozar w pomieszczeniu " + IDRoomToRemoveFireOrDamage.getText());
                 IDRoomToRemoveFireOrDamage.clear();
                 addRoomLog();
+            } else {
+                addEventLog("Ten pokoj nie jest podpalony");
             }
+        } else {
+            addEventLog("Grr! Pomieszczenia maja ID 1-21");
         }
     }
 
@@ -115,12 +162,17 @@ public class GameViewController {
                 addEventLog("Naprawiono pomieszczenie " + IDRoomToRemoveFireOrDamage.getText());
                 IDRoomToRemoveFireOrDamage.clear();
                 addRoomLog();
+            } else {
+                addEventLog("Ten pokoj nie jest uszkodzony");
             }
+        } else {
+            addEventLog("Grr! ID pomieszczenie 1-21");
         }
     }
 
+    @FXML
     public void onAlienEncounterButtonClick() {
-        if (validationPlayerID()) {
+        if (validationPlayerID() && isNumeric(IDPlayerAlienEncounter.getText())) {
             int playerID = Integer.parseInt(IDPlayerAlienEncounter.getText());
             int roomID = ship.getPlayerPositionID(playerID);
             if (pool.getNumberOfTokens() > 0) {
@@ -136,15 +188,38 @@ public class GameViewController {
             }
             IDPlayerAlienEncounter.clear();
             setBars();
+        } else {
+            addEventLog("Brak lub bledne ID gracza");
         }
     }
 
     @FXML
     private void onRemoveAlienButtonClick() {
-        if (ship.removeAlien(Integer.parseInt(IDAlienToRemove.getText()))) {
-            addEventLog("Usunieto z planszy Obcy " + IDAlienToRemove.getText());
-            IDAlienToRemove.clear();
-            addAlienLog();
+
+        if (!IDAlienToRemove.getText().isEmpty() && validationAlienID(IDAlienToRemove.getText())) {
+            if (ship.removeAlien(Integer.parseInt(IDAlienToRemove.getText()))) {
+                addEventLog("Usunieto z planszy Obcy " + IDAlienToRemove.getText());
+                IDAlienToRemove.clear();
+                addAlienLog();
+                addRoomLog();
+            } else {
+                addEventLog("Bledne ID Obcego");
+            }
+        } else {
+            addEventLog("Brak ID Obcego");
+        }
+    }
+
+    @FXML
+    private void onSetNestButtonClick() {
+        if (!idNest.getText().isEmpty() && validationRoomID(idNest.getText())) {
+            ship.setNestStatus(Integer.parseInt(idNest.getText()));
+            idNest.setVisible(false);
+            nestHint.setVisible(false);
+            setNestButton.setVisible(false);
+            addRoomLog();
+            addEventLog("Gniazdo odnalezione w pomieszczeniu " + idNest.getText());
+            idNest.clear();
         }
     }
 
@@ -218,23 +293,44 @@ public class GameViewController {
         eventListView.refresh();
     }
 
+    private boolean validationAlienID(String id) {
+        return Integer.parseInt(id) < 100 && Integer.parseInt(id) > 0;
+    }
+
     private boolean validationPlayerID() {
         return !IDPlayerAlienEncounter.getText().isEmpty() && Integer.parseInt(IDPlayerAlienEncounter.getText()) < ship.numberOfPlayers() + 1;
     }
 
     private boolean validationRoomID(String id) {
-        return Integer.parseInt(id) < 22 && Integer.parseInt(id) > 0;
+        if (isNumeric(id)) {
+            return Integer.parseInt(id) < 22 && Integer.parseInt(id) > 0;
+        }
+        return false;
     }
 
     private boolean checkPlayerAndRoomID() {
-        return !IDPlayerPlayerPositionChange.getText().isEmpty() && !IDRoomPlayerPositionChange.getText().isEmpty() && Integer.parseInt(IDPlayerPlayerPositionChange.getText()) < ship.numberOfPlayers() + 1 && Integer.parseInt(IDPlayerPlayerPositionChange.getText()) > 0 && Integer.parseInt(IDRoomPlayerPositionChange.getText()) > 0 && Integer.parseInt(IDRoomPlayerPositionChange.getText()) < 22;
-    }
-
-    private boolean validationTokenTierID(int tierID) {
-        if (tierID > 0 && tierID < 6) {
-            return true;
+        if (isNumeric(IDPlayerPlayerPositionChange.getText()) && isNumeric(IDRoomPlayerPositionChange.getText())) {
+            return !IDPlayerPlayerPositionChange.getText().isEmpty() && !IDRoomPlayerPositionChange.getText().isEmpty() && Integer.parseInt(IDPlayerPlayerPositionChange.getText()) < ship.numberOfPlayers() + 1 && Integer.parseInt(IDPlayerPlayerPositionChange.getText()) > 0 && Integer.parseInt(IDRoomPlayerPositionChange.getText()) > 0 && Integer.parseInt(IDRoomPlayerPositionChange.getText()) < 22;
         }
         return false;
+    }
+
+    private boolean validationTokenTierID(String tierID) {
+        if (isNumeric(tierID)) {
+            if (Integer.parseInt(tierID) > 0 && Integer.parseInt(tierID) < 6) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isNumeric(String ID) {
+        try {
+            Integer.parseInt(ID);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     private String tokenToString(int tokenID) {
@@ -292,6 +388,7 @@ public class GameViewController {
         removeDamageButton.setDisable(false);
         alienEncounterButton.setDisable(false);
         addTokenButton.setDisable(false);
+        setNestButton.setDisable(false);
         IDRoomToSetFireOrDamage.setDisable(false);
         IDRoomToRemoveFireOrDamage.setDisable(false);
         IDAlienToRemove.setDisable(false);
@@ -299,11 +396,10 @@ public class GameViewController {
         IDPlayerPlayerPositionChange.setDisable(false);
         IDPlayerAlienEncounter.setDisable(false);
         IDTokenTier.setDisable(false);
-        idL1.setDisable(false);
-        idL2.setDisable(false);
-        idL3.setDisable(false);
-        idL4.setDisable(false);
-        idL5.setDisable(false);
+        IDL1.setDisable(false);
+        IDL2.setDisable(false);
+        IDL3.setDisable(false);
+        idNest.setDisable(false);
         eventListView.setDisable(false);
         playersListView.setDisable(false);
         aliensListView.setDisable(false);
@@ -314,6 +410,7 @@ public class GameViewController {
         ruleHint.setDisable(false);
         removeAlienHint.setDisable(false);
         addTokenHint.setDisable(false);
+        nestHint.setDisable(false);
         larvaBar.setDisable(false);
         creeperBar.setDisable(false);
         adultBar.setDisable(false);

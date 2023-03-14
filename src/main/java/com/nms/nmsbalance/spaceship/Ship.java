@@ -10,6 +10,8 @@ public class Ship {
     private int damageCounter = 0;
     private int fireCounter = 0;
     private int alienIDCounter = 1;
+    private boolean nestFounded = false;
+    private int nestRoomID;
     private HashMap<Integer,Room> board = new HashMap<>();
     private HashMap<Integer, Player> players = new HashMap<>();
     private HashMap<Integer, Alien> aliens = new HashMap<>();
@@ -62,6 +64,8 @@ public class Ship {
         fireCounter++;
     }
     public void setNestStatus(int id){
+        nestFounded = true;
+        nestRoomID = id;
         board.get(id).setNestStatus();
         board.get(id).setDescription("Gniazdo");
     }
@@ -81,23 +85,18 @@ public class Ship {
         board.get(id).removeFireStatus();
         fireCounter--;
     }
-    public void removeNestStatus(int id) {
-        board.get(id).removeNestStatus();
-    }
-    public void removePlayerInsideStatus(int id) {
-        board.get(id).removePlayerInsideStatus();
-    }
-    public void removeAlienInsideStatus(int id) {
+    public void removeAlienInsideStatus(int id){
         board.get(id).removeAlienInsideStatus();
+    }
+
+    public boolean checkIfNestFounded(){
+        return nestFounded;
     }
     public boolean checkDamageStatus(int id){
         return board.get(id).checkDamageStatus();
     }
     public boolean checkFireStatus(int id){
         return board.get(id).checkFireStatus();
-    }
-    public void checkNestStatus(int id){
-        board.get(id).checkNestStatus();
     }
     public boolean checkPlayerInsideStatus(int id){
         return board.get(id).checkPlayerInsideStatus();
@@ -126,6 +125,10 @@ public class Ship {
         board.get(newIDRoom).addPlayerCounter();
         board.get(newIDRoom).setPlayerInsideStatus();
     }
+
+    public int getNestRoomID(){
+        return nestRoomID;
+    }
     public int getPlayerPositionID(int id){
         return players.get(id).getPositionRoomID();
     }
@@ -133,9 +136,7 @@ public class Ship {
     public int numberOfPlayers(){
         return players.size();
     }
-    public int numberOfAliensOnBoard(){
-        return aliens.size();
-    }
+
     public void addAlienToBoard(Token token,int roomID) {
         if (token.getIntType() > 0) {
             aliens.put(alienIDCounter, new Alien(token.getType(), token.getIntType(), roomID));
@@ -150,7 +151,11 @@ public class Ship {
     public boolean removeAlien(int alienID)
     {
         if(aliens.containsKey(alienID)){
+            int roomID = aliens.get(alienID).getPositionRoomID();
+            System.out.println(aliens.size());
             aliens.remove(alienID);
+            removeAlienInsideStatus(roomID);
+
             return true;
         }
         return false;
@@ -158,15 +163,6 @@ public class Ship {
     public List<Integer> getAliensID(){
         return aliens.keySet().stream().toList();
     }
-
-    public String getAlienStringType (int id){
-        return aliens.get(id).getType();
-    }
-
-    public int getAlienPositionID (int id){
-        return aliens.get(id).getPositionRoomID();
-    }
-
     public String getDescription(int id){
        return board.get(id).getDescription();
     }

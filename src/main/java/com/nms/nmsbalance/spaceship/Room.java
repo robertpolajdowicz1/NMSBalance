@@ -93,6 +93,7 @@ public class Room implements IRoom {
 
     @Override
     public void setAlienInsideStatus() {
+        addAlienCounter();
         this.alienInside=true;
     }
 
@@ -106,10 +107,6 @@ public class Room implements IRoom {
         this.fireStatus=false;
     }
 
-    @Override
-    public void removeNestStatus() {
-        this.nestStatus=false;
-    }
 
     @Override
     public void removePlayerInsideStatus() {
@@ -118,7 +115,12 @@ public class Room implements IRoom {
 
     @Override
     public void removeAlienInsideStatus() {
-        this.alienInside=false;
+        if(alienCounter > 0){
+            subAlienCounter();
+        }
+        if (alienCounter == 0) {
+            this.alienInside = false;
+        }
     }
 
     @Override

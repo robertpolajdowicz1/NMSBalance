@@ -62,14 +62,12 @@ public class Pool {
 
         if (alienToken.getIntType() != 0) {
             tokenPool.remove(tokenKeys.get(choosenTokenID));
-
         }
-
         return alienToken;
     }
 
 
-    public int pickToken(boolean nestFounded, boolean playerInNest, boolean alienInNest) {
+    public int pickTokenWhenNestFounded(boolean nestFounded, boolean playerInNest, boolean alienInNest) {
         List<Integer> tokenKeys = tokenPool.keySet().stream().toList();
         Random random = new Random();
         int choosenTokenID = random.nextInt(tokenKeys.size());
@@ -108,6 +106,39 @@ public class Pool {
             }else{
                 return 6;
             }
+        }
+        return tierID;
+    }
+    public int pickToken() {
+        List<Integer> tokenKeys = tokenPool.keySet().stream().toList();
+        Random random = new Random();
+        int choosenTokenID = random.nextInt(tokenKeys.size());
+        Token alienToken = tokenPool.get(tokenKeys.get(choosenTokenID));
+        int tierID = alienToken.getIntType();
+
+        if (tierID == 0) {
+            addToken(3);
+            return 0;
+        }
+        if (tierID == 1 || tierID == 2) {
+            if (tierID == 1) {
+                addToken(3);
+                tokenPool.remove(tokenKeys.get(choosenTokenID));
+                return 1;
+            } else {
+                addToken(4);
+                tokenPool.remove(tokenKeys.get(choosenTokenID));
+                return 2;
+            }
+        }
+        if (tierID == 3) {
+            return 3;
+        }
+        if (tierID == 4) {
+            return 4;
+        }
+        if (tierID == 5) {
+                return 6;
         }
         return tierID;
     }

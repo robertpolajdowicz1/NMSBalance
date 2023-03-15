@@ -15,6 +15,10 @@ public class Ship {
     private HashMap<Integer,Room> board = new HashMap<>();
     private HashMap<Integer, Player> players = new HashMap<>();
     private HashMap<Integer, Alien> aliens = new HashMap<>();
+    public  HashMap<Integer,Alien> getAliens()
+    {
+        return aliens;
+    }
     public void addRoom(int id,Room room){
         board.put(id,room);
     }
@@ -76,12 +80,10 @@ public class Ship {
         board.get(id).setAlienInsideStatus();
     }
     public void removeDamageStatus(int id) {
-
         board.get(id).removeDamageStatus();
         damageCounter--;
     }
     public void removeFireStatus(int id) {
-
         board.get(id).removeFireStatus();
         fireCounter--;
     }
@@ -103,7 +105,6 @@ public class Ship {
     }
     public boolean checkAlienInsideStatus(int id){
         return board.get(id).checkAlienInsideStatus();
-
     }
 
     public void addPlayers(int numberOfPlayers){
@@ -141,20 +142,19 @@ public class Ship {
         if (token.getIntType() > 0) {
             aliens.put(alienIDCounter, new Alien(token.getType(), token.getIntType(), roomID));
             alienIDCounter++;
+            board.get(roomID).addAlienCounter();
+            board.get(roomID).setAlienInsideStatus();
         }
-    }
-    public  HashMap<Integer,Alien> getAliens()
-    {
-        return aliens;
     }
 
     public boolean removeAlien(int alienID)
     {
         if(aliens.containsKey(alienID)){
             int roomID = aliens.get(alienID).getPositionRoomID();
-            System.out.println(aliens.size());
+            board.get(roomID).subAlienCounter();
+            board.get(roomID).removeAlienInsideStatus();
             aliens.remove(alienID);
-            removeAlienInsideStatus(roomID);
+
 
             return true;
         }
@@ -166,5 +166,6 @@ public class Ship {
     public String getDescription(int id){
        return board.get(id).getDescription();
     }
+    public int getAlienCounter(int id){return board.get(id).getAlienCounter();}
 
 }

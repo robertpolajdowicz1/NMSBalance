@@ -10,8 +10,8 @@ public class Room implements IRoom {
     private boolean nestStatus;
     private boolean playersInside;
     private boolean alienInside;
-    private int playerCounter ;
-    private int alienCounter ;
+    private int playerCounter;
+    private int alienCounter;
     private int roomID;
     private ArrayList<Integer> connectedRoomsList = new ArrayList<>();
     private ArrayList<Alien> aliensInRoom = new ArrayList<>();
@@ -29,19 +29,14 @@ public class Room implements IRoom {
         this.roomID = roomID;
     }
 
-    public void addConnectedRooms (int... roomsToConnectID)
-    {
-        for (int roomToConnectID: roomsToConnectID){
+    public void addConnectedRooms(int... roomsToConnectID) {
+        for (int roomToConnectID : roomsToConnectID) {
             connectedRoomsList.add(roomToConnectID);
         }
     }
 
     public ArrayList<Integer> getConnectedRoomsList() {
         return connectedRoomsList;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Override
@@ -71,55 +66,54 @@ public class Room implements IRoom {
 
     @Override
     public void setDamageStatus() {
-        this.damageStatus=true;
+        this.damageStatus = true;
     }
 
     @Override
     public void setFireStatus() {
-        this.fireStatus=true;
+        this.fireStatus = true;
     }
 
     @Override
     public void setNestStatus() {
-        this.nestStatus=true;
+        this.nestStatus = true;
+    }
+
+    @Override
+    public void removeDamageStatus() {
+        this.damageStatus = false;
+    }
+
+    @Override
+    public void removeFireStatus() {
+        this.fireStatus = false;
+    }
+
+    @Override
+    public void removePlayerInsideStatus() {
+        if (playerCounter == 0) {
+            this.playersInside = false;
+        }
     }
 
     @Override
     public void setPlayerInsideStatus() {
-        if(playerCounter > 0) {
+        if (playerCounter > 0) {
             this.playersInside = true;
         }
     }
 
     @Override
-    public void setAlienInsideStatus() {
-        addAlienCounter();
-        this.alienInside=true;
-    }
-
-    @Override
-    public void removeDamageStatus() {
-        this.damageStatus=false;
-    }
-
-    @Override
-    public void removeFireStatus() {
-        this.fireStatus=false;
-    }
-
-
-    @Override
-    public void removePlayerInsideStatus() {
-        if(playerCounter == 0) this.playersInside=false;
-    }
-
-    @Override
     public void removeAlienInsideStatus() {
-        if(alienCounter > 0){
-            subAlienCounter();
-        }
         if (alienCounter == 0) {
             this.alienInside = false;
+        }
+    }
+
+    @Override
+    public void setAlienInsideStatus() {
+        if (alienCounter > 0) {
+            this.alienInside = true;
         }
     }
 
@@ -131,27 +125,37 @@ public class Room implements IRoom {
     }
 
     @Override
-    public void addAlienCounter() {
-        alienCounter++;
-    }
-
-    @Override
     public void subPlayerCounter() {
         if (playerCounter >= 1) {
             playerCounter--;
         }
     }
-
+    @Override
+    public void addAlienCounter() {
+        alienCounter++;
+    }
     @Override
     public void subAlienCounter() {
-        alienCounter--;
+        if (alienCounter >= 1) {
+            alienCounter--;
+        }
     }
+
     public int getRoomID() {
         return roomID;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getAlienCounter() {
+        return alienCounter;
+    }
+
 
 }

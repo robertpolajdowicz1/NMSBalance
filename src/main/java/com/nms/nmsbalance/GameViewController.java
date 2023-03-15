@@ -3,8 +3,7 @@ package com.nms.nmsbalance;
 import com.nms.nmsbalance.services.Services;
 import com.nms.nmsbalance.spaceship.Ship;
 import com.nms.nmsbalance.tokenpool.Pool;
-import com.nms.nmsbalance.tokenpool.Token;
-import com.nms.nmsbalance.validations.Logs;
+import com.nms.nmsbalance.validationLogs.Logs;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 

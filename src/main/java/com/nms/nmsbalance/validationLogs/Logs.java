@@ -1,4 +1,4 @@
-package com.nms.nmsbalance.validations;
+package com.nms.nmsbalance.validationLogs;
 
 import com.nms.nmsbalance.alien.Alien;
 import com.nms.nmsbalance.spaceship.Ship;

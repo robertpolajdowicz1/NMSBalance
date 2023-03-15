@@ -1,4 +1,4 @@
-package com.nms.nmsbalance.validations;
+package com.nms.nmsbalance.validationLogs;
 
 public class Validation {
     public static boolean validationToken(String tierID) {

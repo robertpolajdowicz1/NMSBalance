@@ -3,8 +3,7 @@ package com.nms.nmsbalance.services;
 import com.nms.nmsbalance.spaceship.Ship;
 import com.nms.nmsbalance.tokenpool.Pool;
 import com.nms.nmsbalance.tokenpool.Token;
-import com.nms.nmsbalance.validations.Logs;
-import com.nms.nmsbalance.validations.Validation;
+import com.nms.nmsbalance.validationLogs.Validation;
 
 public class Services {
     private Pool pool;

@@ -6,18 +6,29 @@ import com.nms.nmsbalance.tokenpool.Pool;
 import com.nms.nmsbalance.validationLogs.Logs;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.nio.file.Paths;
 
 
 public class GameViewController {
     private final Ship ship = new Ship();
     private final Pool pool = new Pool();
+    String mediaUrl = "C:\\Users\\rober\\IdeaProjects\\NMSBalance\\src\\main\\resources\\com\\nms\\nmsbalance\\m1.mp3";
+    private Media media = new Media(Paths.get(mediaUrl).toUri().toString());
+    private MediaPlayer player = new MediaPlayer(media);
+
+
+
     private final String emptyTextField = "Puste pole ID";
+
     private Services services = new Services(pool, ship);
 
     @FXML
-    private Button setGameButton, removeAlienButton, playerPositionButton, addTokenButton, alienMoveButton,  pickTokenButton, setFireButton, setDamageButton, removeFireButton, removeDamageButton, alienEncounterButton, setNestButton;
+    private Button changeDifficultyButton,lockDifficultyButton,musicButton, setGameButton, removeAlienButton, playerPositionButton, addTokenButton, alienMoveButton, pickTokenButton, setFireButton, setDamageButton, removeFireButton, removeDamageButton, alienEncounterButton, setNestButton;
     @FXML
-    private ChoiceBox<String> numberOfPlayers;
+    private ChoiceBox<String> numberOfPlayers,difficulty;
 
     @FXML
     private Label startHint, setStatusHint, removeStatusHint, alienEncounterHint, removeAlienHint, IDL1, IDL2, IDL3, ruleHint, eventLabel, tokensLabel, larvaL, creeperL, adultL, breederL, queenL, historyL, aliensL, playersL, addTokenHint, roomsL, nestHint;
@@ -45,10 +56,9 @@ public class GameViewController {
 
     @FXML
     private void onAlienMoveButtonClick() {
-        services.alienMove();
-        Logs.addEventLog(eventListView,"Obcy zmienili swoja pozycje");
-        Logs.addAlienLog(aliensListView,services.getShip());
-        Logs.addRoomLog(roomsListView,services.getShip());
+        Logs.addEventLog(eventListView, services.alienMove());
+        Logs.addAlienLog(aliensListView, services.getShip());
+        Logs.addRoomLog(roomsListView, services.getShip());
     }
 
     @FXML
@@ -167,6 +177,8 @@ public class GameViewController {
         Logs.addRoomLog(roomsListView, services.getShip());
     }
 
+
+
     private void setBars() {
         larvaBar.setProgress(services.calculateBar(1));
         creeperBar.setProgress(services.calculateBar(2));
@@ -202,6 +214,9 @@ public class GameViewController {
         alienEncounterButton.setDisable(false);
         addTokenButton.setDisable(false);
         setNestButton.setDisable(false);
+        changeDifficultyButton.setDisable(false);
+        difficulty.setDisable(false);
+        lockDifficultyButton.setDisable(false);
         IDRoomToSetFireOrDamage.setDisable(false);
         IDRoomToRemoveFireOrDamage.setDisable(false);
         IDAlienToRemove.setDisable(false);
@@ -240,5 +255,29 @@ public class GameViewController {
         aliensL.setDisable(false);
         historyL.setDisable(false);
         playersL.setDisable(false);
+    }
+    @FXML
+    public void handlePlayButton() {
+        if (player.getStatus() == MediaPlayer.Status.PLAYING) {
+            player.pause();
+            musicButton.setText("Odtwarzanie");
+        } else {
+            player.play();
+            musicButton.setText("Pauza");
+        }
+    }
+
+    @FXML
+    public void onLockDifficultyButtonClick() {
+        Logs.addEventLog(eventListView,"Zablokowano poziom trudnosci na " + difficulty.getValue());
+        changeDifficultyButton.setDisable(true);
+        changeDifficultyButton.setVisible(false);
+        difficulty.setDisable(true);
+        difficulty.setVisible(false);
+        lockDifficultyButton.setDisable(true);
+    }
+    @FXML
+    public void onChangeDifficultyButtonClick() {
+        Logs.addEventLog(eventListView,services.changeDifficulty(difficulty.getValue()));
     }
 }

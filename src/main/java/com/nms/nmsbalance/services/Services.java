@@ -8,6 +8,7 @@ import com.nms.nmsbalance.validationLogs.Validation;
 public class Services {
     private Pool pool;
     private Ship ship;
+    private int difficulty = 1;
 
     private String invalidID = "Bledne pole ID";
 
@@ -111,11 +112,11 @@ public class Services {
         }
     }
 
-    public String setNest(String roomID){
-        if(Validation.validationRoom(roomID)){
+    public String setNest(String roomID) {
+        if (Validation.validationRoom(roomID)) {
             ship.setNestStatus(Integer.parseInt(roomID));
             return "Gniazdo odnalezione w pomieszczeniu " + roomID;
-        }else{
+        } else {
             return invalidID;
         }
     }
@@ -163,11 +164,12 @@ public class Services {
         }
     }
 
-    public void setGame(String numberOfPlayers){
+    public void setGame(String numberOfPlayers) {
         pool.setTokenPool(Integer.parseInt(numberOfPlayers));
         ship.setRooms();
         ship.addPlayers(Integer.parseInt(numberOfPlayers));
     }
+
     public double calculateBar(int id) {
         return pool.calculateBar(id);
     }
@@ -192,15 +194,39 @@ public class Services {
         }
     }
 
-    public void alienMove(){
-        ship.alienMove();
+    public String alienMove() {
+        if (ship.getAliens().size() > 0) {
+            ship.alienMove(difficulty);
+            return "Obcy zmienili swoja pozycje";
+        }else{
+            return "Brak obcych ";
+        }
     }
+
     public Pool getPool() {
         return pool;
     }
 
     public Ship getShip() {
         return ship;
+    }
+
+
+    public String changeDifficulty(String level) {
+        int newDifficulty;
+        switch (level) {
+            case "Latwy" -> newDifficulty = 1;
+            case "Normalny" -> newDifficulty = 2;
+            case "Trudny" -> newDifficulty = 3;
+            case "Heroiczny" -> newDifficulty = 4;
+            default -> newDifficulty = difficulty;
+        }
+        if (newDifficulty == difficulty){
+            return "Masz juz ustawiony poziom trudnosci na " + level;
+        }else{
+            difficulty = newDifficulty;
+            return "Zmieniono poziom trudnosci na " + level;
+        }
     }
 }
 

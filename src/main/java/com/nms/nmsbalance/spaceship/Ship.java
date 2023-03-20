@@ -161,16 +161,16 @@ public class Ship {
         return false;
     }
 
-    public void alienMove(){
+    public void alienMove(int difficulty){
+
         for (Alien a: aliens.values())
-        {
-            int position = a.getPositionRoomID();
+        {   int position = a.getPositionRoomID();
             for (int r : board.get(position).getConnectedRoomsList()) {
-                board.get(r).calculateRoomValue();
+                board.get(r).calculateRoomValue(difficulty);
             }
             board.get(position).subAlienCounter();
             board.get(position).removeAlienInsideStatus();
-            int newPosition = findNewPositionForAlien(position);
+            int newPosition = findNewRoomForAlien(position);
             board.get(newPosition).addAlienCounter();
             board.get(newPosition).setAlienInsideStatus();
             a.setPositionRoomID(newPosition);
@@ -178,12 +178,12 @@ public class Ship {
         }
     }
 
-    private int findNewPositionForAlien(int roomID){
-        int min = 100;
+    private int findNewRoomForAlien(int roomID){
+        int value = 0;
         int newPositionID = roomID;
         for (int i: board.get(roomID).getConnectedRoomsList()) {
-            if(min > board.get(i).getRoomValue()){
-                min = board.get(i).getRoomValue();
+            if(value >= board.get(i).getRoomValue()){
+                value = board.get(i).getRoomValue();
                 newPositionID = i;
             }
         }
@@ -193,7 +193,7 @@ public class Ship {
         return aliens.keySet().stream().toList();
     }
     public String getDescription(int id){
-       return board.get(id).getDescription();
+        return board.get(id).getDescription();
     }
     public int getAlienCounter(int id){return board.get(id).getAlienCounter();}
 

@@ -1,6 +1,7 @@
 module com.nms.nmsbalance {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
 
 
     opens com.nms.nmsbalance to javafx.fxml;

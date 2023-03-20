@@ -131,28 +131,128 @@ public class Room implements IRoom {
             playerCounter--;
         }
     }
+
     @Override
     public void addAlienCounter() {
         alienCounter++;
     }
+
     @Override
     public void subAlienCounter() {
         if (alienCounter >= 1) {
             alienCounter--;
         }
     }
-    public void calculateRoomValue(){
-        int damage = 0;
-        int fire = 0;
-        int aliens = 0;
-        int players = 0;
-        if(damageStatus){ damage = 1;}
-        if(fireStatus){fire = 1;}
-        if(playersInside){aliens = 1;}
-        if(alienInside){players = 1;}
 
-        this.roomValue = damage  + fire * 5 + aliens * alienCounter + players * playerCounter;
+    public void calculateRoomValue(int difficulty) {
 
+        switch (difficulty) {
+            case 1 -> this.roomValue = easyLevel();
+            case 2 -> this.roomValue = normalLevel();
+            case 3 -> this.roomValue = hardLevel();
+            case 4 -> this.roomValue = heroicLevel();
+            default -> this.roomValue = easyLevel();
+        }
+    }
+
+    private int easyLevel() {
+        int value = 0;
+        if (damageStatus) {
+            value -= 10;
+        }
+
+        if (fireStatus) {
+            value -= 30;
+        }
+
+        if (nestStatus) {
+            value += 10;
+        }
+
+        if (playersInside) {
+            value += playerCounter * 20;
+        }
+
+        if (alienInside) {
+            value += alienCounter * 15;
+        }
+
+        return value;
+    }
+
+    private int normalLevel() {
+        int value = 0;
+        if (damageStatus) {
+            value -= 5;
+        }
+
+        if (fireStatus) {
+            value -= 10;
+        }
+
+        if (nestStatus) {
+            value += 5;
+        }
+
+        if (playersInside) {
+            value += playerCounter * 5;
+        }
+
+        if (alienInside) {
+            value += alienCounter * 5;
+        }
+
+        return value;
+    }
+
+    private int hardLevel() {
+        int value = 0;
+        if (damageStatus) {
+            value -= 5;
+        }
+
+        if (fireStatus) {
+            value += 10;
+        }
+
+        if (nestStatus) {
+            value -= 5;
+        }
+
+        if (playersInside) {
+            value -= playerCounter * 5;
+        }
+
+        if (alienInside) {
+            value -= alienCounter * 5;
+        }
+
+        return value;
+    }
+
+    private int heroicLevel() {
+        int value = 0;
+        if (damageStatus) {
+            value += 5;
+        }
+
+        if (fireStatus) {
+            value += 30;
+        }
+
+        if (nestStatus) {
+            value -= 5;
+        }
+
+        if (playersInside) {
+            value -= playerCounter * 15;
+        }
+
+        if (alienInside) {
+            value -= alienCounter * 5;
+        }
+
+        return value;
     }
 
     public int getRoomID() {
@@ -171,7 +271,7 @@ public class Room implements IRoom {
         return alienCounter;
     }
 
-    public int getRoomValue(){
+    public int getRoomValue() {
         return roomValue;
     }
 

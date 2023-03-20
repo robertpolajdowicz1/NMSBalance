@@ -192,6 +192,9 @@ public class Services {
         }
     }
 
+    public void alienMove(){
+        ship.alienMove();
+    }
     public Pool getPool() {
         return pool;
     }

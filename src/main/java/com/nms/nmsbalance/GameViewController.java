@@ -45,7 +45,10 @@ public class GameViewController {
 
     @FXML
     private void onAlienMoveButtonClick() {
-
+        services.alienMove();
+        Logs.addEventLog(eventListView,"Obcy zmienili swoja pozycje");
+        Logs.addAlienLog(aliensListView,services.getShip());
+        Logs.addRoomLog(roomsListView,services.getShip());
     }
 
     @FXML

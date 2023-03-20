@@ -12,6 +12,7 @@ public class Room implements IRoom {
     private boolean alienInside;
     private int playerCounter;
     private int alienCounter;
+    private int roomValue;
     private int roomID;
     private ArrayList<Integer> connectedRoomsList = new ArrayList<>();
     private ArrayList<Alien> aliensInRoom = new ArrayList<>();
@@ -140,6 +141,19 @@ public class Room implements IRoom {
             alienCounter--;
         }
     }
+    public void calculateRoomValue(){
+        int damage = 0;
+        int fire = 0;
+        int aliens = 0;
+        int players = 0;
+        if(damageStatus){ damage = 1;}
+        if(fireStatus){fire = 1;}
+        if(playersInside){aliens = 1;}
+        if(alienInside){players = 1;}
+
+        this.roomValue = damage  + fire * 5 + aliens * alienCounter + players * playerCounter;
+
+    }
 
     public int getRoomID() {
         return roomID;
@@ -157,5 +171,8 @@ public class Room implements IRoom {
         return alienCounter;
     }
 
+    public int getRoomValue(){
+        return roomValue;
+    }
 
 }

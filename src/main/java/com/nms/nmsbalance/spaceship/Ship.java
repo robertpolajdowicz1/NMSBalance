@@ -160,6 +160,35 @@ public class Ship {
         }
         return false;
     }
+
+    public void alienMove(){
+        for (Alien a: aliens.values())
+        {
+            int position = a.getPositionRoomID();
+            for (int r : board.get(position).getConnectedRoomsList()) {
+                board.get(r).calculateRoomValue();
+            }
+            board.get(position).subAlienCounter();
+            board.get(position).removeAlienInsideStatus();
+            int newPosition = findNewPositionForAlien(position);
+            board.get(newPosition).addAlienCounter();
+            board.get(newPosition).setAlienInsideStatus();
+            a.setPositionRoomID(newPosition);
+
+        }
+    }
+
+    private int findNewPositionForAlien(int roomID){
+        int min = 100;
+        int newPositionID = roomID;
+        for (int i: board.get(roomID).getConnectedRoomsList()) {
+            if(min > board.get(i).getRoomValue()){
+                min = board.get(i).getRoomValue();
+                newPositionID = i;
+            }
+        }
+        return newPositionID;
+    }
     public List<Integer> getAliensID(){
         return aliens.keySet().stream().toList();
     }
@@ -167,5 +196,6 @@ public class Ship {
        return board.get(id).getDescription();
     }
     public int getAlienCounter(int id){return board.get(id).getAlienCounter();}
+
 
 }

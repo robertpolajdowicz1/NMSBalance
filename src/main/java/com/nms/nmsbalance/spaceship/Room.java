@@ -1,10 +1,8 @@
 package com.nms.nmsbalance.spaceship;
 
-import com.nms.nmsbalance.alien.Alien;
-
 import java.util.ArrayList;
 
-public class Room implements IRoom {
+public class Room{
     private boolean damageStatus;
     private boolean fireStatus;
     private boolean nestStatus;
@@ -15,7 +13,6 @@ public class Room implements IRoom {
     private int roomValue;
     private int roomID;
     private ArrayList<Integer> connectedRoomsList = new ArrayList<>();
-    private ArrayList<Alien> aliensInRoom = new ArrayList<>();
     private String description = "Pomieszczenie";
 
     public Room(boolean damageStatus, boolean fireStatus, boolean nestStatus, boolean playersInside, boolean alienInside
@@ -40,104 +37,86 @@ public class Room implements IRoom {
         return connectedRoomsList;
     }
 
-    @Override
     public boolean checkDamageStatus() {
         return this.damageStatus;
     }
 
-    @Override
-    public boolean checkFireStatus() {
+   public boolean checkFireStatus() {
         return this.fireStatus;
     }
 
-    @Override
     public boolean checkNestStatus() {
         return this.nestStatus;
     }
 
-    @Override
     public boolean checkPlayerInsideStatus() {
         return this.playersInside;
     }
 
-    @Override
     public boolean checkAlienInsideStatus() {
         return this.alienInside;
     }
 
-    @Override
     public void setDamageStatus() {
         this.damageStatus = true;
     }
 
-    @Override
     public void setFireStatus() {
         this.fireStatus = true;
     }
 
-    @Override
     public void setNestStatus() {
         this.nestStatus = true;
     }
 
-    @Override
     public void removeDamageStatus() {
         this.damageStatus = false;
     }
 
-    @Override
     public void removeFireStatus() {
         this.fireStatus = false;
     }
 
-    @Override
     public void removePlayerInsideStatus() {
         if (playerCounter == 0) {
             this.playersInside = false;
         }
     }
 
-    @Override
     public void setPlayerInsideStatus() {
         if (playerCounter > 0) {
             this.playersInside = true;
         }
     }
 
-    @Override
     public void removeAlienInsideStatus() {
         if (alienCounter == 0) {
             this.alienInside = false;
         }
     }
 
-    @Override
     public void setAlienInsideStatus() {
         if (alienCounter > 0) {
             this.alienInside = true;
         }
     }
 
-    @Override
     public void addPlayerCounter() {
         if (playerCounter < 5) {
             playerCounter++;
         }
     }
 
-    @Override
     public void subPlayerCounter() {
         if (playerCounter >= 1) {
             playerCounter--;
         }
     }
 
-    @Override
     public void addAlienCounter() {
         alienCounter++;
     }
 
-    @Override
     public void subAlienCounter() {
         if (alienCounter >= 1) {
             alienCounter--;

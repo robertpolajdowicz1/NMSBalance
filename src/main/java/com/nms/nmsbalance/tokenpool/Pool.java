@@ -7,32 +7,26 @@ import java.util.Random;
 public class Pool {
     private int idTokenCounter = 0;
     private HashMap<Integer, Token> tokenPool = new HashMap<>();
-
     public int getNumberOfTokens() {
         return tokenPool.size();
     }
 
     public void setTokenPool(int numberOfPlayers) {
 
-
         for (int i = 0; i < 4; i++) {
             tokenPool.put(idTokenCounter, new Token("Larwa", 1));
             addTokenIDCounter();
-
         }
         tokenPool.put(idTokenCounter, new Token("Pelzacz", 2));
         addTokenIDCounter();
-
         tokenPool.put(idTokenCounter, new Token("Pusty", 0));
         addTokenIDCounter();
         for (int i = 0; i < 3 + numberOfPlayers; i++) {
             tokenPool.put(idTokenCounter, new Token("Dorosly", 3));
             addTokenIDCounter();
-
         }
         tokenPool.put(idTokenCounter, new Token("Krolowa", 5));
         addTokenIDCounter();
-
     }
 
     public int countToken(int type) {

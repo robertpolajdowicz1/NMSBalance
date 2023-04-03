@@ -211,7 +211,6 @@ public class Services {
         return ship;
     }
 
-
     public String changeDifficulty(String level) {
         int newDifficulty;
         switch (level) {

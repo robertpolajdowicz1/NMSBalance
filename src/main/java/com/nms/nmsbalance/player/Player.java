@@ -3,7 +3,6 @@ package com.nms.nmsbalance.player;
 public class Player {
     private int playerID;
     private int positionRoomID = 11;
-    private int seriousWoundCounter;
 
     public int getPositionRoomID() {
         return positionRoomID;

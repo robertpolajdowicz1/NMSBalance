@@ -25,6 +25,7 @@ public class Logs {
     public static void addRoomLog(ListView<String> roomsListView, Ship ship) {
         roomsListView.getItems().clear();
         StringBuilder info = new StringBuilder();
+
         for (int i = 1; i < 22; i++) {
             info.append(ship.getDescription(i));
             info.append(" ");
@@ -54,12 +55,12 @@ public class Logs {
         HashMap<Integer, Alien> aliensToAdd = ship.getAliens();
         List<Integer> aliensIDs = ship.getAliensID();
         StringBuilder info = new StringBuilder();
+
         for (Alien a : aliensToAdd.values()) {
             info.append(a.getType()).append(" ").append(aliensIDs.get(i)).append(" w pomieszczeniu ").append(a.getPositionRoomID());
             i++;
             aliensListView.getItems().add(0, info.toString());
             info = new StringBuilder();
-
             ship.setAlienInsideStatus(a.getPositionRoomID());
         }
         aliensListView.refresh();

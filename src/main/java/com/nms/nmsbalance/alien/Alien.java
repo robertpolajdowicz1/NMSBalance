@@ -10,16 +10,9 @@ public class Alien {
         this.positionRoomID = positionRoomID;
     }
 
-
     public String getType() {
         return alienType;
     }
-
-
-    public int getIntType() {
-        return alienIntType;
-    }
-
 
     public void setPositionRoomID(int id) {
         positionRoomID = id;

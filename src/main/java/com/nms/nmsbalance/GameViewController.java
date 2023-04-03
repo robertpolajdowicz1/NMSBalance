@@ -13,8 +13,6 @@ import java.nio.file.Paths;
 
 
 public class GameViewController {
-    private final Ship ship = new Ship();
-    private final Pool pool = new Pool();
     String mediaUrl = "C:\\Users\\rober\\IdeaProjects\\NMSBalance\\src\\main\\resources\\com\\nms\\nmsbalance\\m1.mp3";
     private Media media = new Media(Paths.get(mediaUrl).toUri().toString());
     private MediaPlayer player = new MediaPlayer(media);
@@ -23,7 +21,7 @@ public class GameViewController {
 
     private final String emptyTextField = "Puste pole ID";
 
-    private Services services = new Services(pool, ship);
+    private Services services = new Services(new Pool(), new Ship());
 
     @FXML
     private Button changeDifficultyButton,lockDifficultyButton,musicButton, setGameButton, removeAlienButton, playerPositionButton, addTokenButton, alienMoveButton, pickTokenButton, setFireButton, setDamageButton, removeFireButton, removeDamageButton, alienEncounterButton, setNestButton;
@@ -47,8 +45,8 @@ public class GameViewController {
                     IDPlayerPlayerPositionChange.getText()));
             IDRoomPlayerPositionChange.clear();
             IDPlayerPlayerPositionChange.clear();
-            Logs.addPlayerLog(playersListView, ship);
-            Logs.addRoomLog(roomsListView, ship);
+            Logs.addPlayerLog(playersListView, services.getShip());
+            Logs.addRoomLog(roomsListView, services.getShip());
         } else {
             Logs.addEventLog(eventListView, emptyTextField);
         }

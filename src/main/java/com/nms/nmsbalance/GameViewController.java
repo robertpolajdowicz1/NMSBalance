@@ -5,10 +5,16 @@ import com.nms.nmsbalance.spaceship.Ship;
 import com.nms.nmsbalance.tokenpool.Pool;
 import com.nms.nmsbalance.validationLogs.Logs;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
+import javafx.stage.Stage;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
+import java.io.IOException;
 import java.nio.file.Paths;
 
 
@@ -17,14 +23,15 @@ public class GameViewController {
     private Media media = new Media(Paths.get(mediaUrl).toUri().toString());
     private MediaPlayer player = new MediaPlayer(media);
 
-
+    boolean showMapClicked = false;
+    private Stage mapStage;
 
     private final String emptyTextField = "Puste pole ID";
 
     private Services services = new Services(new Pool(), new Ship());
 
     @FXML
-    private Button changeDifficultyButton,lockDifficultyButton,musicButton, setGameButton, removeAlienButton, playerPositionButton, addTokenButton, alienMoveButton, pickTokenButton, setFireButton, setDamageButton, removeFireButton, removeDamageButton, alienEncounterButton, setNestButton;
+    private Button showMapButton,changeDifficultyButton,lockDifficultyButton,musicButton, setGameButton, removeAlienButton, playerPositionButton, addTokenButton, alienMoveButton, pickTokenButton, setFireButton, setDamageButton, removeFireButton, removeDamageButton, alienEncounterButton, setNestButton;
     @FXML
     private ChoiceBox<String> numberOfPlayers,difficulty;
 
@@ -36,7 +43,9 @@ public class GameViewController {
     private TextField IDRoomToRemoveFireOrDamage, IDRoomToSetFireOrDamage, IDAlienToRemove, IDRoomPlayerPositionChange, IDPlayerPlayerPositionChange, IDPlayerAlienEncounter, IDTokenTier, idNest;
     @FXML
     private ListView<String> eventListView, aliensListView, playersListView, roomsListView;
-
+    @FXML private Button debugButton;
+    @FXML private ListView<String > debugList;
+    private int counterDebug = 0;
 
     @FXML
     private void onPlayerPositionButtonClick() {
@@ -54,7 +63,9 @@ public class GameViewController {
 
     @FXML
     private void onAlienMoveButtonClick() {
+
         Logs.addEventLog(eventListView, services.alienMove());
+        Logs.addDebugLog(debugList,services.getShip());
         Logs.addAlienLog(aliensListView, services.getShip());
         Logs.addRoomLog(roomsListView, services.getShip());
     }
@@ -213,6 +224,7 @@ public class GameViewController {
         addTokenButton.setDisable(false);
         setNestButton.setDisable(false);
         changeDifficultyButton.setDisable(false);
+        showMapButton.setDisable(false);
         difficulty.setDisable(false);
         lockDifficultyButton.setDisable(false);
         IDRoomToSetFireOrDamage.setDisable(false);
@@ -253,6 +265,7 @@ public class GameViewController {
         aliensL.setDisable(false);
         historyL.setDisable(false);
         playersL.setDisable(false);
+
     }
     @FXML
     public void handlePlayButton() {
@@ -277,5 +290,48 @@ public class GameViewController {
     @FXML
     public void onChangeDifficultyButtonClick() {
         Logs.addEventLog(eventListView,services.changeDifficulty(difficulty.getValue()));
+    }
+
+    @FXML
+
+    public void onDebugButtonClick() {
+        if(counterDebug >= 5){
+            debugList.setVisible(true);
+        }else{
+            counterDebug++;
+        }
+    }
+
+    public void onShowMapButtonClick() {
+        if (!showMapClicked) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("map-view.fxml"));
+                Parent root = loader.load();
+                mapStage = new Stage();
+                MapViewController mapController = loader.getController();
+                mapController.setServices(services);
+                mapController.onRefreshButtonClicked();
+                mapStage.setScene(new Scene(root));
+                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+                double windowHeight = screenBounds.getHeight() * 0.69;
+                double windowY = screenBounds.getHeight() - windowHeight;
+                mapStage.setY(windowY);
+                mapStage.setHeight(windowHeight);
+                mapStage.show();
+                showMapClicked = true;
+                mapStage.setTitle("Mapa");
+                mapStage.setResizable(false);
+                mapStage.setAlwaysOnTop(true);
+                showMapButton.setText("Mapa OFF");
+                Logs.addEventLog(eventListView, "Mapa otwarta");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            mapStage.close();
+            showMapClicked = false;
+            showMapButton.setText("Mapa ON");
+            Logs.addEventLog(eventListView, "Mapa zamknieta");
+        }
     }
 }

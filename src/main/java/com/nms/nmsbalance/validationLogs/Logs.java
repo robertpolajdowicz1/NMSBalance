@@ -65,4 +65,21 @@ public class Logs {
         }
         aliensListView.refresh();
     }
+
+    public static void addDebugLog(ListView<String> debugList, Ship ship){
+        debugList.getItems().clear();
+
+        StringBuilder info = new StringBuilder();
+
+        for (int i = 1; i < 22; i++) {
+            info.append(ship.getDescription(i));
+            info.append(" ");
+            info.append(i);
+            info.append(" VALUE= ");
+            info.append(ship.getRoomValue(i));
+
+            debugList.getItems().add(info.toString());
+            info = new StringBuilder();
+        }
+    }
 }

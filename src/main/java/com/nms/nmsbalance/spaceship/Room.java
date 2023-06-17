@@ -11,8 +11,8 @@ public class Room{
     private int playerCounter;
     private int alienCounter;
     private int roomValue;
-    private int roomID;
-    private ArrayList<Integer> connectedRoomsList = new ArrayList<>();
+    private final int roomID;
+    private final ArrayList<Integer> connectedRoomsList = new ArrayList<>();
     private String description = "Pomieszczenie";
 
     public Room(boolean damageStatus, boolean fireStatus, boolean nestStatus, boolean playersInside, boolean alienInside
@@ -136,101 +136,118 @@ public class Room{
 
     private int easyLevel() {
         int value = 0;
-        if (damageStatus) {
-            value -= 10;
+        if(checkPlayerInsideStatus()){
+            return value;
+        }else{
+            value += 20;
+            if(checkFireStatus()){
+                value += 100;
+                return value;
+            }else{
+                value += 20;
+                if(checkAlienInsideStatus()){
+                    value -= 30 ;
+                }else{
+                    value += 20;
+                }
+            }
         }
-
-        if (fireStatus) {
-            value -= 30;
-        }
-
-        if (nestStatus) {
-            value += 10;
-        }
-
-        if (playersInside) {
-            value += playerCounter * 20;
-        }
-
-        if (alienInside) {
-            value += alienCounter * 15;
-        }
-
         return value;
     }
 
     private int normalLevel() {
         int value = 0;
-        if (damageStatus) {
-            value -= 5;
+        if(checkPlayerInsideStatus()){
+            value-=40;
+        }else{
+            value += 20;
+            if(checkFireStatus()){
+                value += 60;
+            }else{
+                value += 20;
+                if(checkAlienInsideStatus()){
+                    value -= 30 ;
+                }else{
+                    value += 20;
+                    if(checkDamageStatus()){
+                        value += -10;
+                    }else{
+                        value += +20;
+                    }
+                }
+            }
         }
-
-        if (fireStatus) {
-            value -= 10;
-        }
-
-        if (nestStatus) {
-            value += 5;
-        }
-
-        if (playersInside) {
-            value += playerCounter * 5;
-        }
-
-        if (alienInside) {
-            value += alienCounter * 5;
-        }
-
         return value;
     }
 
     private int hardLevel() {
         int value = 0;
-        if (damageStatus) {
-            value -= 5;
+        if(checkFireStatus()){
+           value += 10;
+        }else{
+            value += 50;
+            if(checkPlayerInsideStatus()){
+                value += 100;
+                if(checkAlienInsideStatus()){
+                    value += 50;
+                }else{
+                    if(checkDamageStatus()){
+                        value += 20;
+                    }else{
+                        value += 10;
+                    }
+                }
+            }else{
+                if(checkAlienInsideStatus()){
+                    value += 50;
+                }else{
+                    value += 10;
+                }
+            }
         }
-
-        if (fireStatus) {
-            value += 10;
-        }
-
-        if (nestStatus) {
-            value -= 5;
-        }
-
-        if (playersInside) {
-            value -= playerCounter * 5;
-        }
-
-        if (alienInside) {
-            value -= alienCounter * 5;
-        }
-
         return value;
     }
 
     private int heroicLevel() {
         int value = 0;
-        if (damageStatus) {
+        if(checkFireStatus()){
             value += 5;
+        }else {
+            value += 50;
+            if(checkPlayerInsideStatus()){
+                value += playerCounter * 100;
+                if(checkNestStatus()){
+                value += 50;
+                }else{
+                    value += 10;
+                    if(checkAlienInsideStatus()){
+                        if(getAlienCounter()>=2){
+                            value-=10;
+                        }else{
+                            value += 30;
+                        }
+                    }else{
+                        value += 10;
+                        if(checkDamageStatus()){
+                            value += 10;
+                        }else {
+                            value += 5;
+                        }
+                    }
+                }
+            }else{
+                if(checkAlienInsideStatus()){
+                    value += 30;
+                }else{
+                    value += 10;
+                    if(checkDamageStatus()){
+                        value += 10;
+                    }else {
+                        value += 5;
+                    }
+                }
+            }
         }
-
-        if (fireStatus) {
-            value += 30;
-        }
-
-        if (nestStatus) {
-            value -= 5;
-        }
-
-        if (playersInside) {
-            value -= playerCounter * 15;
-        }
-
-        if (alienInside) {
-            value -= alienCounter * 5;
-        }
-
         return value;
     }
 
@@ -250,8 +267,13 @@ public class Room{
         return alienCounter;
     }
 
+    public int getPlayerCounter() {
+        return playerCounter;
+    }
     public int getRoomValue() {
         return roomValue;
     }
+
+
 
 }

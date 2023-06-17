@@ -3,8 +3,11 @@ package com.nms.nmsbalance.spaceship;
 import com.nms.nmsbalance.alien.Alien;
 import com.nms.nmsbalance.player.Player;
 import com.nms.nmsbalance.tokenpool.Token;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class Ship {
     private int damageCounter = 0;
@@ -174,20 +177,36 @@ public class Ship {
             board.get(newPosition).addAlienCounter();
             board.get(newPosition).setAlienInsideStatus();
             a.setPositionRoomID(newPosition);
-
         }
     }
 
+//    private int findNewRoomForAlien(int roomID){
+//        ArrayList<Integer> toRandomChoose = new ArrayList<>();
+//        int value = 0;
+//        int newPositionID = roomID;
+//        for (int i: board.get(roomID).getConnectedRoomsList()) {
+//            if(value <= board.get(i).getRoomValue()){
+//                value = board.get(i).getRoomValue();
+//                newPositionID = i;
+//            }
+//        }
+//        return newPositionID;
+//    }
     private int findNewRoomForAlien(int roomID){
-        int value = 0;
-        int newPositionID = roomID;
+        ArrayList<Integer> toRandomChoose = new ArrayList<>();
+        int maxValue = -1;
         for (int i: board.get(roomID).getConnectedRoomsList()) {
-            if(value >= board.get(i).getRoomValue()){
-                value = board.get(i).getRoomValue();
-                newPositionID = i;
+            if(maxValue < board.get(i).getRoomValue()){
+                maxValue = board.get(i).getRoomValue();
             }
         }
-        return newPositionID;
+
+        for (int i: board.get(roomID).getConnectedRoomsList()) {
+            if(maxValue == board.get(i).getRoomValue()){
+                toRandomChoose.add(i);
+            }
+        }
+        return chooseRandomRoomID(toRandomChoose);
     }
     public List<Integer> getAliensID(){
         return aliens.keySet().stream().toList();
@@ -197,5 +216,11 @@ public class Ship {
     }
     public int getAlienCounter(int id){return board.get(id).getAlienCounter();}
 
+    public int getRoomValue(int id){return board.get(id).getRoomValue();}
+
+    public int chooseRandomRoomID(ArrayList<Integer> list) {
+        Random rand = new Random();
+        return list.get(rand.nextInt(list.size()));
+    }
 
 }

@@ -21,7 +21,8 @@
          <images>
             <BackgroundImage>
                <image>
-                  <Image url="C:\\Users\\rober\\IdeaProjects\\NMSBalance\\src\\main\\resources\\com\\nms\\nmsbalance\\n2.jpg" />
+
+                  <Image url="@n2.jpg" />
                </image>
             </BackgroundImage>
          </images>

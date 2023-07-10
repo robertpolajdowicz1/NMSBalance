@@ -6,34 +6,33 @@ import com.nms.nmsbalance.tokenpool.Pool;
 import com.nms.nmsbalance.validationLogs.Logs;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
-import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
+
 import java.io.IOException;
-import java.nio.file.Paths;
 
 
 public class GameViewController {
-    String mediaUrl = "C:\\Users\\rober\\IdeaProjects\\NMSBalance\\src\\main\\resources\\com\\nms\\nmsbalance\\m1.mp3";
-    private Media media = new Media(Paths.get(mediaUrl).toUri().toString());
-    private MediaPlayer player = new MediaPlayer(media);
-
-    boolean showMapClicked = false;
-    private Stage mapStage;
-
     private final String emptyTextField = "Puste pole ID";
 
+    String mediaUrl = this.getClass().getResource("m1.mp3").toString();
+    boolean showMapClicked = false;
+    private Media media = new Media(mediaUrl);
+
+    private MediaPlayer player = new MediaPlayer(media);
+    private Stage mapStage;
     private Services services = new Services(new Pool(), new Ship());
 
     @FXML
-    private Button showMapButton,changeDifficultyButton,lockDifficultyButton,musicButton, setGameButton, removeAlienButton, playerPositionButton, addTokenButton, alienMoveButton, pickTokenButton, setFireButton, setDamageButton, removeFireButton, removeDamageButton, alienEncounterButton, setNestButton;
+    private Button showMapButton, changeDifficultyButton, lockDifficultyButton, musicButton, setGameButton, removeAlienButton, playerPositionButton, addTokenButton, alienMoveButton, pickTokenButton, setFireButton, setDamageButton, removeFireButton, removeDamageButton, alienEncounterButton, setNestButton;
     @FXML
-    private ChoiceBox<String> numberOfPlayers,difficulty;
+    private ChoiceBox<String> numberOfPlayers, difficulty;
 
     @FXML
     private Label startHint, setStatusHint, removeStatusHint, alienEncounterHint, removeAlienHint, IDL1, IDL2, IDL3, ruleHint, eventLabel, tokensLabel, larvaL, creeperL, adultL, breederL, queenL, historyL, aliensL, playersL, addTokenHint, roomsL, nestHint;
@@ -43,8 +42,10 @@ public class GameViewController {
     private TextField IDRoomToRemoveFireOrDamage, IDRoomToSetFireOrDamage, IDAlienToRemove, IDRoomPlayerPositionChange, IDPlayerPlayerPositionChange, IDPlayerAlienEncounter, IDTokenTier, idNest;
     @FXML
     private ListView<String> eventListView, aliensListView, playersListView, roomsListView;
-    @FXML private Button debugButton;
-    @FXML private ListView<String > debugList;
+    @FXML
+    private Button debugButton;
+    @FXML
+    private ListView<String> debugList;
     private int counterDebug = 0;
 
     @FXML
@@ -65,7 +66,7 @@ public class GameViewController {
     private void onAlienMoveButtonClick() {
 
         Logs.addEventLog(eventListView, services.alienMove());
-        Logs.addDebugLog(debugList,services.getShip());
+        Logs.addDebugLog(debugList, services.getShip());
         Logs.addAlienLog(aliensListView, services.getShip());
         Logs.addRoomLog(roomsListView, services.getShip());
     }
@@ -187,7 +188,6 @@ public class GameViewController {
     }
 
 
-
     private void setBars() {
         larvaBar.setProgress(services.calculateBar(1));
         creeperBar.setProgress(services.calculateBar(2));
@@ -267,6 +267,7 @@ public class GameViewController {
         playersL.setDisable(false);
 
     }
+
     @FXML
     public void handlePlayButton() {
         if (player.getStatus() == MediaPlayer.Status.PLAYING) {
@@ -280,24 +281,25 @@ public class GameViewController {
 
     @FXML
     public void onLockDifficultyButtonClick() {
-        Logs.addEventLog(eventListView,"Zablokowano poziom trudnosci na " + difficulty.getValue());
+        Logs.addEventLog(eventListView, "Zablokowano poziom trudnosci na " + difficulty.getValue());
         changeDifficultyButton.setDisable(true);
         changeDifficultyButton.setVisible(false);
         difficulty.setDisable(true);
         difficulty.setVisible(false);
         lockDifficultyButton.setDisable(true);
     }
+
     @FXML
     public void onChangeDifficultyButtonClick() {
-        Logs.addEventLog(eventListView,services.changeDifficulty(difficulty.getValue()));
+        Logs.addEventLog(eventListView, services.changeDifficulty(difficulty.getValue()));
     }
 
     @FXML
 
     public void onDebugButtonClick() {
-        if(counterDebug >= 5){
+        if (counterDebug >= 5) {
             debugList.setVisible(true);
-        }else{
+        } else {
             counterDebug++;
         }
     }
@@ -315,16 +317,13 @@ public class GameViewController {
                 Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
                 double windowHeight = screenBounds.getHeight() * 0.69;
                 double windowY = screenBounds.getHeight() - windowHeight;
-               // mapStage.setY(windowY);
                 mapStage.setY(windowY);
-               // mapStage.setHeight(windowHeight);
                 mapStage.setHeight(740);
                 mapStage.setWidth(1068.0);
                 mapStage.show();
                 showMapClicked = true;
                 mapStage.setTitle("Mapa");
                 mapStage.setResizable(false);
-               // mapStage.setAlwaysOnTop(true);
                 showMapButton.setText("Mapa OFF");
                 Logs.addEventLog(eventListView, "Mapa otwarta");
             } catch (IOException e) {

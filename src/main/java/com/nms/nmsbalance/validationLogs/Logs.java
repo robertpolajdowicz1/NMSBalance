@@ -66,7 +66,7 @@ public class Logs {
         aliensListView.refresh();
     }
 
-    public static void addDebugLog(ListView<String> debugList, Ship ship){
+    public static void addDebugLog(ListView<String> debugList, Ship ship) {
         debugList.getItems().clear();
 
         StringBuilder info = new StringBuilder();

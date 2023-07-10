@@ -7,6 +7,7 @@ import java.util.Random;
 public class Pool {
     private int idTokenCounter = 0;
     private HashMap<Integer, Token> tokenPool = new HashMap<>();
+
     public int getNumberOfTokens() {
         return tokenPool.size();
     }
@@ -94,15 +95,16 @@ public class Pool {
                 if (alienInNest || playerInNest) {
                     tokenPool.remove(tokenKeys.get(choosenTokenID));
                     return 5;
-                }else{
+                } else {
                     return 6;
                 }
-            }else{
+            } else {
                 return 6;
             }
         }
         return tierID;
     }
+
     public int pickToken() {
         List<Integer> tokenKeys = tokenPool.keySet().stream().toList();
         Random random = new Random();
@@ -132,7 +134,7 @@ public class Pool {
             return 4;
         }
         if (tierID == 5) {
-                return 6;
+            return 6;
         }
         return tierID;
     }

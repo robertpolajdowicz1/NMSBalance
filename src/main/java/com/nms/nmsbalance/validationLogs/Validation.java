@@ -11,10 +11,9 @@ public class Validation {
     }
 
     public static boolean validationRoom(String roomID) {
-        if(isNumeric(roomID))
-        {
+        if (isNumeric(roomID)) {
             return Integer.parseInt(roomID) > 0 && Integer.parseInt(roomID) < 22;
-        }else{
+        } else {
             return false;
         }
     }
@@ -29,10 +28,9 @@ public class Validation {
 
 
     public static boolean validationPlayer(String playerID, int numberOfPlayers) {
-        if(isNumeric(playerID)){
+        if (isNumeric(playerID)) {
             return Integer.parseInt(playerID) > 0 && Integer.parseInt(playerID) < numberOfPlayers + 1;
-        }
-        else{
+        } else {
             return false;
         }
     }

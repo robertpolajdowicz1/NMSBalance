@@ -13,7 +13,7 @@
             <images>
                 <BackgroundImage>
                     <image>
-                        <Image url="C:\\Users\\rober\\IdeaProjects\\NMSBalance\\src\\main\\resources\\com\\nms\\nmsbalance\\n1.jpg" />
+                        <Image url="@n1.jpg" />
                     </image>
                 </BackgroundImage>
             </images>

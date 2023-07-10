@@ -198,7 +198,7 @@ public class Services {
         if (ship.getAliens().size() > 0) {
             ship.alienMove(difficulty);
             return "Obcy zmienili swoja pozycje";
-        }else{
+        } else {
             return "Brak obcych ";
         }
     }
@@ -220,9 +220,9 @@ public class Services {
             case "Heroiczny" -> newDifficulty = 4;
             default -> newDifficulty = difficulty;
         }
-        if (newDifficulty == difficulty){
+        if (newDifficulty == difficulty) {
             return "Masz juz ustawiony poziom trudnosci na " + level;
-        }else{
+        } else {
             difficulty = newDifficulty;
             return "Zmieniono poziom trudnosci na " + level;
         }

@@ -14,7 +14,7 @@
          <images>
             <BackgroundImage>
                <image>
-                  <Image url="C:\\Users\\rober\\IdeaProjects\\NMSBalance\\src\\main\\resources\\com\\nms\\nmsbalance\\mapa.png" />
+                  <Image url="@mapa.png" />
                </image>
             </BackgroundImage>
          </images>

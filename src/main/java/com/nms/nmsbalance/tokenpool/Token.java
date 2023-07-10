@@ -5,7 +5,7 @@ public class Token {
     int intType;
     String type;
 
-    public Token(  String type,int intType) {
+    public Token(String type, int intType) {
         this.intType = intType;
         this.type = type;
     }

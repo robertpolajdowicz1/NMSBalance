@@ -193,6 +193,7 @@ public class Ship {
 //        return newPositionID;
 //    }
     private int findNewRoomForAlien(int roomID){
+
         ArrayList<Integer> toRandomChoose = new ArrayList<>();
         int maxValue = -1;
         for (int i: board.get(roomID).getConnectedRoomsList()) {
@@ -206,7 +207,7 @@ public class Ship {
                 toRandomChoose.add(i);
             }
         }
-        return chooseRandomRoomID(toRandomChoose);
+        return chooseRandomRoomIDBetweenEven(toRandomChoose);
     }
     public List<Integer> getAliensID(){
         return aliens.keySet().stream().toList();
@@ -218,7 +219,7 @@ public class Ship {
 
     public int getRoomValue(int id){return board.get(id).getRoomValue();}
 
-    public int chooseRandomRoomID(ArrayList<Integer> list) {
+    public int chooseRandomRoomIDBetweenEven(ArrayList<Integer> list) {
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }

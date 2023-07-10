@@ -315,13 +315,16 @@ public class GameViewController {
                 Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
                 double windowHeight = screenBounds.getHeight() * 0.69;
                 double windowY = screenBounds.getHeight() - windowHeight;
+               // mapStage.setY(windowY);
                 mapStage.setY(windowY);
-                mapStage.setHeight(windowHeight);
+               // mapStage.setHeight(windowHeight);
+                mapStage.setHeight(740);
+                mapStage.setWidth(1068.0);
                 mapStage.show();
                 showMapClicked = true;
                 mapStage.setTitle("Mapa");
                 mapStage.setResizable(false);
-                mapStage.setAlwaysOnTop(true);
+               // mapStage.setAlwaysOnTop(true);
                 showMapButton.setText("Mapa OFF");
                 Logs.addEventLog(eventListView, "Mapa otwarta");
             } catch (IOException e) {

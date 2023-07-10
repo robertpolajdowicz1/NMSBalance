@@ -18,7 +18,8 @@ public class StartController {
 
         Parent root = FXMLLoader.load(getClass().getResource("game-view.fxml"));
         Stage stage = (Stage) startButton.getScene().getWindow();
-        stage.setScene(new Scene(root,1200,700));
+        stage.setScene(new Scene(root,1200,630));
+        stage.setResizable(false);
 
     }
 

@@ -8,152 +8,467 @@
 <?import javafx.scene.layout.BackgroundImage?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="530" prefWidth="1450.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nms.nmsbalance.MapViewController">
-    <background>
-        <Background>
-            <images>
-                <BackgroundImage>
-                    <image>
-                        <Image url="C:\\Users\\rober\\IdeaProjects\\NMSBalance\\src\\main\\resources\\com\\nms\\nmsbalance\\boardSystem.png" />
-                    </image>
-                </BackgroundImage>
-            </images>
-        </Background>
-    </background>
+<AnchorPane prefHeight="730" prefWidth="1080" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nms.nmsbalance.MapViewController">
+   <background>
+      <Background>
+         <images>
+            <BackgroundImage>
+               <image>
+                  <Image url="C:\\Users\\rober\\IdeaProjects\\NMSBalance\\src\\main\\resources\\com\\nms\\nmsbalance\\mapa.png" />
+               </image>
+            </BackgroundImage>
+         </images>
+      </Background>
+   </background>
    <children>
 
-      <Button layoutX="53.0" layoutY="408.0" mnemonicParsing="false" onAction="#onRefreshButtonClicked" text="Odśwież">
+      <Button layoutX="16.0" layoutY="528.0" mnemonicParsing="false" onAction="#onRefreshButtonClicked" text="Odśwież">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="r1F" layoutX="14.0" layoutY="191.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r1D" layoutX="62.0" layoutY="191.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r1P" layoutX="16.0" layoutY="276.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r1A" layoutX="73.0" layoutY="276.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r1F" layoutX="36.0" layoutY="298.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r1D" layoutX="11.0" layoutY="325.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r1P" layoutX="24.0" layoutY="366.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r1A" layoutX="31.0" layoutY="400.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r2F" layoutX="204.0" layoutY="55.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r2D" layoutX="264.0" layoutY="55.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r2P" layoutX="206.0" layoutY="102.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r2A" layoutX="273.0" layoutY="102.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r2F" layoutX="179.0" layoutY="103.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r2D" layoutX="168.0" layoutY="129.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r2P" layoutX="228.0" layoutY="136.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r2A" layoutX="232.0" layoutY="111.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r3F" layoutX="204.0" layoutY="209.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r3D" layoutX="264.0" layoutY="209.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r3P" layoutX="206.0" layoutY="256.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r3A" layoutX="273.0" layoutY="256.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r3F" layoutX="156.0" layoutY="325.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r3D" layoutX="194.0" layoutY="325.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r3P" layoutX="146.0" layoutY="357.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r3A" layoutX="203.0" layoutY="357.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r4F" layoutX="204.0" layoutY="348.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r4D" layoutX="264.0" layoutY="348.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r4P" layoutX="206.0" layoutY="399.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r4A" layoutX="273.0" layoutY="399.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r4F" layoutX="192.0" layoutY="539.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r4D" layoutX="225.0" layoutY="539.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r4P" layoutX="183.0" layoutY="578.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r4A" layoutX="234.0" layoutY="587.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r5F" layoutX="492.0" layoutY="5.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r5D" layoutX="552.0" layoutY="5.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r5P" layoutX="494.0" layoutY="55.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r5A" layoutX="574.0" layoutY="55.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r5F" layoutX="376.0" layoutY="31.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r5D" layoutX="421.0" layoutY="31.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r5P" layoutX="378.0" layoutY="82.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r5A" layoutX="430.0" layoutY="82.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
 
-      <Label fx:id="r6F" layoutX="530.0" layoutY="120.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r6D" layoutX="590.0" layoutY="120.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r6P" layoutX="532.0" layoutY="173.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r6A" layoutX="599.0" layoutY="173.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r6F" layoutX="407.0" layoutY="183.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r6D" layoutX="438.0" layoutY="191.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r6P" layoutX="398.0" layoutY="236.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r6A" layoutX="455.0" layoutY="236.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r7F" layoutX="376.0" layoutY="209.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r7D" layoutX="442.0" layoutY="209.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r7P" layoutX="378.0" layoutY="256.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r7A" layoutX="451.0" layoutY="256.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r7F" layoutX="300.0" layoutY="325.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r7D" layoutX="337.0" layoutY="325.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r7P" layoutX="291.0" layoutY="375.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r7A" layoutX="346.0" layoutY="375.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r8F" layoutX="518.0" layoutY="307.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r8D" layoutX="577.0" layoutY="307.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r8P" layoutX="521.0" layoutY="357.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r8A" layoutX="599.0" layoutY="357.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r8F" layoutX="407.0" layoutY="457.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r8D" layoutX="447.0" layoutY="457.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r8P" layoutX="385.0" layoutY="508.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r8A" layoutX="456.0" layoutY="508.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r9F" layoutX="503.0" layoutY="419.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r9D" layoutX="552.0" layoutY="419.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r9P" layoutX="501.0" layoutY="472.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r9A" layoutX="574.0" layoutY="472.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r9F" layoutX="386.0" layoutY="619.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r9D" layoutX="430.0" layoutY="619.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r9P" layoutX="364.0" layoutY="656.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r9A" layoutX="439.0" layoutY="656.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r10F" layoutX="789.0" layoutY="30.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r10D" layoutX="848.0" layoutY="30.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r10P" layoutX="791.0" layoutY="73.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r10A" layoutX="867.0" layoutY="73.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r10F" layoutX="564.0" layoutY="64.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r10D" layoutX="606.0" layoutY="64.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r10P" layoutX="554.0" layoutY="120.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r10A" layoutX="615.0" layoutY="120.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r11F" layoutX="677.0" layoutY="191.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r11D" layoutX="833.0" layoutY="191.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r11P" layoutX="679.0" layoutY="276.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r11A" layoutX="842.0" layoutY="276.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r11F" layoutX="521.0" layoutY="276.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r11D" layoutX="580.0" layoutY="334.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r11P" layoutX="576.0" layoutY="356.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r11A" layoutX="559.0" layoutY="384.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r12F" layoutX="800.0" layoutY="428.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r12D" layoutX="858.0" layoutY="430.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r12P" layoutX="802.0" layoutY="481.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r12A" layoutX="867.0" layoutY="481.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r12F" layoutX="568.0" layoutY="587.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r12D" layoutX="606.0" layoutY="587.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r12P" layoutX="558.0" layoutY="637.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r12A" layoutX="620.0" layoutY="628.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r13F" layoutX="1019.0" layoutY="21.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r13D" layoutX="1079.0" layoutY="21.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r13P" layoutX="1021.0" layoutY="73.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r13A" layoutX="1097.0" layoutY="73.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r13F" layoutX="754.0" layoutY="91.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r13D" layoutX="803.0" layoutY="91.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r13P" layoutX="744.0" layoutY="121.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r13A" layoutX="812.0" layoutY="127.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r14F" layoutX="960.0" layoutY="145.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r14D" layoutX="1016.0" layoutY="145.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r14P" layoutX="962.0" layoutY="191.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r14A" layoutX="1036.0" layoutY="191.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r14F" layoutX="674.0" layoutY="218.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r14D" layoutX="718.0" layoutY="218.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r14P" layoutX="664.0" layoutY="267.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r14A" layoutX="727.0" layoutY="269.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r15F" layoutX="960.0" layoutY="316.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r15D" layoutX="1016.0" layoutY="316.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r15P" layoutX="962.0" layoutY="366.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r15A" layoutX="1036.0" layoutY="366.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r15F" layoutX="674.0" layoutY="409.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r15D" layoutX="710.0" layoutY="408.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r15P" layoutX="664.0" layoutY="475.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r15A" layoutX="719.0" layoutY="475.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       
-      <Label fx:id="r16F" layoutX="1030.0" layoutY="439.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r16D" layoutX="1079.0" layoutY="437.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r16P" layoutX="1032.0" layoutY="490.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r16A" layoutX="1097.0" layoutY="490.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r16F" layoutX="766.0" layoutY="559.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r16D" layoutX="803.0" layoutY="559.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r16P" layoutX="756.0" layoutY="619.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r16A" layoutX="817.0" layoutY="619.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
 
-      <Label fx:id="r17F" layoutX="1172.0" layoutY="145.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r17D" layoutX="1231.0" layoutY="145.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r17P" layoutX="1174.0" layoutY="191.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r17A" layoutX="1240.0" layoutY="191.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r17F" layoutX="837.0" layoutY="209.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r17D" layoutX="875.0" layoutY="209.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r17P" layoutX="824.0" layoutY="258.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r17A" layoutX="884.0" layoutY="260.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r18F" layoutX="1160.0" layoutY="316.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r18D" layoutX="1220.0" layoutY="316.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r18P" layoutX="1162.0" layoutY="366.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r18A" layoutX="1240.0" layoutY="366.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r18F" layoutX="837.0" layoutY="417.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r18D" layoutX="875.0" layoutY="418.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r18P" layoutX="827.0" layoutY="475.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r18A" layoutX="884.0" layoutY="475.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r19F" layoutX="1321.0" layoutY="21.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r19D" layoutX="1377.0" layoutY="21.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r19P" layoutX="1323.0" layoutY="73.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r19A" layoutX="1395.0" layoutY="73.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r19F" layoutX="936.0" layoutY="82.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r19D" layoutX="986.0" layoutY="91.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r19P" layoutX="926.0" layoutY="145.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r19A" layoutX="991.0" layoutY="145.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r20F" layoutX="1343.0" layoutY="227.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r20D" layoutX="1386.0" layoutY="227.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r20P" layoutX="1343.0" layoutY="276.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r20A" layoutX="1410.0" layoutY="278.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r20F" layoutX="948.0" layoutY="316.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r20D" layoutX="986.0" layoutY="316.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r20P" layoutX="941.0" layoutY="365.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r20A" layoutX="1006.0" layoutY="366.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
 
-      <Label fx:id="r21F" layoutX="1332.0" layoutY="448.0" text="FIRE" textFill="#ff5900" visible="false" />
-      <Label fx:id="r21D" layoutX="1377.0" layoutY="448.0" text="DAMAGE" textFill="#737070" visible="false" />
-      <Label fx:id="r21P" layoutX="1334.0" layoutY="499.0" text="PLAYER" textFill="#1f0ed9" visible="false" />
-      <Label fx:id="r21A" layoutX="1402.0" layoutY="499.0" text="ALIEN" textFill="#11ff00" visible="false" />
+      <Label fx:id="r21F" layoutX="936.0" layoutY="539.0" text="FIRE" textFill="#ff5900">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r21D" layoutX="999.0" layoutY="539.0" text="DAMAGE" textFill="#181818">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r21P" layoutX="938.0" layoutY="610.0" text="PLAYER" textFill="#1f0ed9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="r21A" layoutX="1005.0" layoutY="601.0" text="ALIEN" textFill="#11ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       
-      <Label fx:id="r1V" layoutX="48.0" layoutY="165.0" text="Label" />
-      <Label fx:id="r2V" layoutX="250.0" layoutY="30.0" text="Label" />
-      <Label fx:id="r3V" layoutX="250.0" layoutY="182.0" text="Label" />
-      <Label fx:id="r4V" layoutX="250.0" layoutY="325.0" text="Label" />
-      <Label fx:id="r7V" layoutX="418.0" layoutY="182.0" text="Label" />
-      <Label fx:id="r5V" layoutX="453.0" layoutY="30.0" text="Label" />
-      <Label fx:id="r6V" layoutX="489.0" layoutY="129.0" text="Label" />
-      <Label fx:id="r8V" layoutX="576.0" layoutY="285.0" text="Label" />
-      <Label fx:id="r9V" layoutX="503.0" layoutY="399.0" text="Label" />
-      <Label fx:id="r10V" layoutX="736.0" layoutY="30.0" text="Label" />
-      <Label fx:id="r11V" layoutX="788.0" layoutY="165.0" text="Label" />
-      <Label fx:id="r12V" layoutX="834.0" layoutY="400.0" text="Label" />
-      <Label fx:id="r13V" layoutX="982.0" layoutY="22.0" text="Label" />
-      <Label fx:id="r14V" layoutX="948.0" layoutY="112.0" text="Label" />
-      <Label fx:id="r15V" layoutX="1007.0" layoutY="287.0" text="Label" />
-      <Label fx:id="r16V" layoutX="993.0" layoutY="421.0" text="Label" />
-      <Label fx:id="r17V" layoutX="1180.0" layoutY="112.0" text="Label" />
-      <Label fx:id="r19V" layoutX="1281.0" layoutY="21.0" text="Label" />
-      <Label fx:id="r18V" layoutX="1194.0" layoutY="285.0" text="Label" />
-      <Label fx:id="r20V" layoutX="1295.0" layoutY="236.0" text="Label" />
-      <Label fx:id="r21V" layoutX="1281.0" layoutY="439.0" text="Label" />
+      <Label fx:id="r1V" layoutX="33.0" layoutY="278.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r2V" layoutX="205.0" layoutY="87.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r3V" layoutX="185.0" layoutY="339.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r4V" layoutX="213.0" layoutY="517.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r7V" layoutX="361.0" layoutY="348.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r5V" layoutX="395.0" layoutY="51.0" prefHeight="26.0" prefWidth="40.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r6V" layoutX="432.0" layoutY="209.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r8V" layoutX="447.0" layoutY="484.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r9V" layoutX="407.0" layoutY="637.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r10V" layoutX="617.0" layoutY="91.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r11V" layoutX="556.0" layoutY="303.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r12V" layoutX="582.0" layoutY="606.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r13V" layoutX="797.0" layoutY="68.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r14V" layoutX="695.0" layoutY="236.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r15V" layoutX="721.0" layoutY="430.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r16V" layoutX="743.0" layoutY="583.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r17V" layoutX="886.0" layoutY="236.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r19V" layoutX="948.0" layoutY="102.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r18V" layoutX="886.0" layoutY="448.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r20V" layoutX="933.0" layoutY="339.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="r21V" layoutX="933.0" layoutY="568.0" text="Label" textFill="#e70d0d">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
    </children>
 </AnchorPane>

@@ -51,8 +51,8 @@
       <Label fx:id="adultL" disable="true" layoutX="237.0" layoutY="305.0" text="Dorosły" textFill="WHITE" />
       <Label fx:id="creeperL" disable="true" layoutX="237.0" layoutY="324.0" text="Pełzacz" textFill="WHITE" />
       <Label fx:id="breederL" disable="true" layoutX="237.0" layoutY="286.0" text="Reproduktor" textFill="WHITE" />
-      <Label fx:id="setStatusHint" disable="true" layoutX="101.0" layoutY="122.0" text="Ustaw status" textFill="WHITE" />
-      <Label fx:id="IDL2" disable="true" layoutX="46.0" layoutY="122.0" text="ID" textFill="WHITE" />
+      <Label fx:id="setStatusHint" disable="true" layoutX="55.0" layoutY="123.0" text="Ustaw status w pomieszczeniu" textFill="WHITE" />
+      <Label fx:id="IDL2" disable="true" layoutX="37.0" layoutY="122.0" text="ID" textFill="WHITE" />
       <Label fx:id="IDL1" disable="true" layoutX="67.0" layoutY="38.0" text="ID pomieszczenia i gracza" textFill="WHITE" />
       <Label fx:id="startHint" layoutX="447.0" layoutY="396.0" text="Wybierz liczbe graczy i kliknij Start" textFill="WHITE">
          <font>
@@ -67,12 +67,12 @@
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Label fx:id="addTokenHint" disable="true" layoutX="606.0" layoutY="123.0" text="Tier" textFill="WHITE">
+      <Label fx:id="addTokenHint" disable="true" layoutX="606.0" layoutY="123.0" text="Dodaj obcego do puli" textFill="WHITE">
          <effect>
             <Glow />
          </effect></Label>
       <Label fx:id="IDL3" disable="true" layoutX="242.0" layoutY="122.0" text="ID" textFill="WHITE" />
-      <Label fx:id="removeStatusHint" disable="true" layoutX="288.0" layoutY="122.0" text="Usuń status" textFill="WHITE" />
+      <Label fx:id="removeStatusHint" disable="true" layoutX="263.0" layoutY="122.0" text="Usuń status w pomieszczeniu" textFill="WHITE" />
       <Label fx:id="historyL" disable="true" layoutX="135.0" layoutY="386.0" text="HISTORIA" textFill="WHITE">
          <effect>
             <Glow />
@@ -110,7 +110,7 @@
             <Glow />
          </effect></Label>
       <Button fx:id="setGameButton" layoutX="504.0" layoutY="429.0" mnemonicParsing="false" onAction="#onSetGameButtonClick" prefHeight="54.0" prefWidth="83.0" text="Start" />
-      <Button fx:id="removeAlienButton" disable="true" layoutX="290.0" layoutY="61.0" mnemonicParsing="false" onAction="#onRemoveAlienButtonClick" text="Usuń Obcego" />
+      <Button fx:id="removeAlienButton" disable="true" layoutX="290.0" layoutY="61.0" mnemonicParsing="false" onAction="#onRemoveAlienButtonClick" text="Usuń obcego" />
       <Button fx:id="setFireButton" disable="true" layoutX="67.0" layoutY="142.0" mnemonicParsing="false" onAction="#onSetFireButtonClick" text="Ogień" />
       <Button fx:id="setDamageButton" disable="true" layoutX="116.0" layoutY="142.0" mnemonicParsing="false" onAction="#onSetDamageButtonClick" text="Uszkodzenie" />
       <Button fx:id="playerPositionButton" disable="true" layoutX="102.0" layoutY="60.0" mnemonicParsing="false" onAction="#onPlayerPositionButtonClick" text="Zmień pozycje gracza" />

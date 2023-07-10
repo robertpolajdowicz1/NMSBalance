@@ -20,7 +20,7 @@ public class MapViewController {
             r16A,r17F, r17D, r17P, r17A,r18F, r18D, r18P, r18A,r19F, r19D, r19P, r19A,r20F, r20D, r20P, r20A,r21F, r21D,
             r21P, r21A;
     @FXML
-    private Label r1V, r2V, r3V, r4V, r5V, r6V, r7V, r8V, r9V, r10V, r11V, r12V, r13V, r14V, r15V, r16V, r17V, r18V, r19V, r20V, r21V;
+    private Label  r1V,r2V, r3V, r4V, r5V, r6V, r7V, r8V, r9V, r10V, r11V, r12V, r13V, r14V, r15V, r16V, r17V, r18V, r19V, r20V, r21V;
 
 
     public void setServices(Services services) {

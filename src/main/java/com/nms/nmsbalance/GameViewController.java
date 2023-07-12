@@ -21,7 +21,7 @@ import java.io.IOException;
 public class GameViewController {
     private final String emptyTextField = "Puste pole ID";
 
-    String mediaUrl = this.getClass().getResource("m1.mp3").toString();
+    private String mediaUrl = this.getClass().getResource("m1.mp3").toString();
     boolean showMapClicked = false;
     private Media media = new Media(mediaUrl);
 

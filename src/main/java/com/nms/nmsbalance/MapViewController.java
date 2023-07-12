@@ -159,7 +159,7 @@ public class MapViewController {
             labelHashMap.get(i*4-2).setVisible(services.getShip().checkDamageStatus(i));
             labelHashMap.get(i*4-1).setVisible(services.getShip().checkPlayerInsideStatus(i));
             labelHashMap.get(i*4).setVisible(services.getShip().checkAlienInsideStatus(i));
-            labelValueHashmap.get(i).setText(String.valueOf(services.getShip().getRoomValue(i)));
+            labelValueHashmap.get(i).setText(String.valueOf(services.getShip().getRoomValue(i)+services.getShip().getInfluenceValue(i)));
         }
     }
 }

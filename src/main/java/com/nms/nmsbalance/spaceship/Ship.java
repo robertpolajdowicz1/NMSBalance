@@ -166,11 +166,10 @@ public class Ship {
 
     public void alienMove(int difficulty) {
 
+        influenceMap(difficulty);
+
         for (Alien a : aliens.values()) {
             int position = a.getPositionRoomID();
-            for (int r : board.get(position).getConnectedRoomsList()) {
-                board.get(r).calculateRoomValue(difficulty);
-            }
             board.get(position).subAlienCounter();
             board.get(position).removeAlienInsideStatus();
             int newPosition = findNewRoomForAlien(position);
@@ -180,18 +179,35 @@ public class Ship {
         }
     }
 
+    public void influenceMap(int difficulty){
+        for (int i = 1; i <= 21 ; i++) {
+            board.get(i).calculateRoomValue(difficulty);
+        }
+        for (int i = 1; i <= 21; i++) {
+            calculateInfluenceValue(i);
+        }
+    }
+
+    private void calculateInfluenceValue(int id){
+        double influenceValue = 0;
+        for (int r : board.get(id).getConnectedRoomsList()) {
+
+            influenceValue += board.get(r).getRoomValue();
+        }
+        board.get(id).setInfluenceValue(influenceValue * 0.15);
+    }
     private int findNewRoomForAlien(int roomID) {
 
         ArrayList<Integer> toRandomChoose = new ArrayList<>();
-        int maxValue = -1;
+        double maxValue = 0;
         for (int i : board.get(roomID).getConnectedRoomsList()) {
-            if (maxValue < board.get(i).getRoomValue()) {
-                maxValue = board.get(i).getRoomValue();
+            if (maxValue < board.get(i).getRoomValue() + board.get(i).getInfluenceValue()) {
+                maxValue = board.get(i).getRoomValue() + board.get(i).getInfluenceValue();
             }
         }
 
         for (int i : board.get(roomID).getConnectedRoomsList()) {
-            if (maxValue == board.get(i).getRoomValue()) {
+            if (maxValue == board.get(i).getRoomValue() + board.get(i).getInfluenceValue()) {
                 toRandomChoose.add(i);
             }
         }
@@ -210,7 +226,7 @@ public class Ship {
         return board.get(id).getAlienCounter();
     }
 
-    public int getRoomValue(int id) {
+    public double getRoomValue(int id) {
         return board.get(id).getRoomValue();
     }
 
@@ -219,4 +235,7 @@ public class Ship {
         return list.get(rand.nextInt(list.size()));
     }
 
+    public double getInfluenceValue(int i) {
+        return board.get(i).getInfluenceValue();
+    }
 }

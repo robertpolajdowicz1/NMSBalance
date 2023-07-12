@@ -12,7 +12,8 @@ public class Room {
     private boolean alienInside;
     private int playerCounter;
     private int alienCounter;
-    private int roomValue;
+    private double roomValue ;
+    private double influenceValue;
     private String description = "Pomieszczenie";
 
     public Room(boolean damageStatus, boolean fireStatus, boolean nestStatus, boolean playersInside, boolean alienInside
@@ -224,9 +225,9 @@ public class Room {
         if (checkPlayerInsideStatus()) {
             value += 40 * playerCounter;
             if (checkFireStatus()) {
-                value += 5;
-            } else {
                 value += 10;
+            } else {
+                value += 15;
             }
         } else {
             value += 0;
@@ -289,9 +290,18 @@ public class Room {
         return playerCounter;
     }
 
-    public int getRoomValue() {
+    public double getInfluenceValue(){
+        return influenceValue;
+    }
+
+    public void setInfluenceValue(double iV){
+        influenceValue = iV;
+    }
+
+    public double getRoomValue() {
         return roomValue;
     }
+
 
 
 }
